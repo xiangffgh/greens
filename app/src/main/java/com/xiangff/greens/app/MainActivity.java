@@ -9,6 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+/**
+ * 主窗口
+ *
+ * 相非非
+ * 2016 08 09
+ * V1.0
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override
