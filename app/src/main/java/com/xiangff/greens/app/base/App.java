@@ -2,6 +2,8 @@ package com.xiangff.greens.app.base;
 
 import android.app.Application;
 
+import com.tencent.bugly.crashreport.CrashReport;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -10,7 +12,8 @@ import java.util.Objects;
  * Created by xiangff on 2016/8/17.
  */
 public class App extends Application {
-    /**保存应用程序缓存数据*/
+    private static final String TAG="App";
+    /**保存缓存数据*/
     Map<String,Object> caches=new HashMap<String,Object>();
 
     /*
@@ -26,8 +29,17 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        /*第三个参数 开发时设置为true  发布时设置为false*/
+        CrashReport.initCrashReport(getApplicationContext(), "900048180", true);
     }
 
-
-
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        switch (level) {
+            case TRIM_MEMORY_UI_HIDDEN:
+                /*释放资源*/
+                break;
+        }
+    }
 }

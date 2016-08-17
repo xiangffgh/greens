@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.xiangff.greens.app.base.BaseActivity;
+
 /**
  * 主窗口
  *
@@ -16,7 +18,7 @@ import android.view.View;
  * 2016 08 09
  * V1.0
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
