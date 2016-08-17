@@ -33,6 +33,7 @@ public class App extends Application {
         CrashReport.initCrashReport(getApplicationContext(), "900048180", true);
     }
 
+
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
