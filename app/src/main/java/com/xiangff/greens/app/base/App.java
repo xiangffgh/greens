@@ -33,6 +33,10 @@ public class App extends Application {
         CrashReport.initCrashReport(getApplicationContext(), "900048180", true);
     }
 
+    /**
+     * 内存不足时释放资源
+     * @param level
+     */
     @Override
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
