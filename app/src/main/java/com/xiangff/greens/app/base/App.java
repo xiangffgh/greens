@@ -27,7 +27,7 @@ public class App extends Application {
         return  AppHolder.instance;
     }
     @Override
-    public void onCreate() {
+     public void onCreate() {
         super.onCreate();
         /*第三个参数 开发时设置为true  发布时设置为false*/
         CrashReport.initCrashReport(getApplicationContext(), "900048180", true);
