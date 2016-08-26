@@ -48,6 +48,7 @@
                 android:layout_toLeftOf="@+id/btn_home_search"
                 android:background="@null"
                 android:hint="名称"
+                android:textSize="12sp"
                 />
             <ImageButton
                 android:id="@+id/btn_home_search"
