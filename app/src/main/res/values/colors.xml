@@ -3,4 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="main_theme">#40D8B0</color>
+    <color name="backgroud">#F2F2F3</color>
+    <color name="title">#41D9B1</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#FB5E5F</color>
+    <color name="tab_p">#40D8B0</color>
+    <color name="home_center_tools_group_by_title">#FB5E5F</color>
+    <color name="home_center_tools_group_by_subTitle">#9B9B9B</color>
+    <color name="home_center_tools_greens_title">#BDEF6E</color>
+    <color name="home_center_tools_greens_subTitle">#9B9B9B</color>
+    <color name="home_center_tools_cook_book_title">#FBA936</color>
+    <color name="home_center_tools_cook_book_subTitle">#9B9B9B</color>
+    <color name="home_center_tools_health_title">#4FCFF6</color>
+    <color name="home_center_tools_health_subTitle">#9B9B9B</color>
+    <color name="home_center_bargain_price_title">#626262</color>
+    <color name="home_center_bargain_item_title">#1C1C1C</color>
+    <color name="home_center_bargain_item_price_money">#EE7264</color>
+    <color name="home_center_bargain_item_price_weigth">#878787</color>
 </resources>
