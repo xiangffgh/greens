@@ -1,7 +1,11 @@
-MVP - Drager2 -RxJava- Retrofit- EventBus  - Guava - OKHttp - SqlBrite -GreenDao
+MVP - Drager2 -RxJava -RxBinding - RxBus(EventBus/Otto) - Retrofit- Guava - OKHttp - SqlBrite -GreenDao -Gson
+                                                                          - Android_Universal_Image_Loader
+
 
 
 Bugly
+
+RecyclerView  + SwipeRefreshLayout
 
 ----------------------------------
 Hybrid App

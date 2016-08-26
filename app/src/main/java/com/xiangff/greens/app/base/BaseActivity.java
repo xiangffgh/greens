@@ -20,20 +20,12 @@ public class BaseActivity extends AppCompatActivity {
 //    public static final String ACTION_PUSH_DATA = "fm.data.push.action";
 //    public static final String ACTION_NEW_VERSION = "apk.update.action";
 
-    private AppExitRecevier appExitRecevier=new AppExitRecevier(){
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            super.onReceive(context, intent);
-            BaseActivity.this.finish();
-        }
-    };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
-        IntentFilter filter=new IntentFilter();
-        filter.addAction(AppExitRecevier.ACTION_EXIT);
-        this.registerReceiver(appExitRecevier,filter );
+
     }
 
     @Override
@@ -51,7 +43,8 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.unregisterReceiver(appExitRecevier);
+
+
     }
 
     // 横竖屏切换，键盘等
