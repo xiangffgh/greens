@@ -26,7 +26,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.1.5
+
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
@@ -34,6 +34,7 @@ dependencies {
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.google.guava:guava:19.0'
+    compile 'com.android.support:cardview-v7:23.4.0'
     //Retrofit2
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'//ConverterFactory的Gson依赖包

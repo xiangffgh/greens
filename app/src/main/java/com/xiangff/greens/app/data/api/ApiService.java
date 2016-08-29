@@ -2,6 +2,7 @@ package com.xiangff.greens.app.data.api;
 
 
 import com.xiangff.greens.app.data.adv.Adv;
+import com.xiangff.greens.app.data.groupbuy.GBModel;
 
 import java.util.List;
 
@@ -20,4 +21,7 @@ public interface ApiService {
 
     @GET("adv/advs.do")
     Observable<List<Adv>> getAdvs();
+
+    @GET("groupbuy/gbs.do")
+    Observable<List<GBModel>> getGbModels(@Query("currentPage") int currentPage);
 }

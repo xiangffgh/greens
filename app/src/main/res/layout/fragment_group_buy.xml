@@ -1,4 +1,5 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,4 +11,40 @@
         android:layout_height="match_parent"
         android:text="有货" />
 
-</FrameLayout>
+    <RelativeLayout
+        android:id="@+id/rl_group_buy_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_title"
+        android:background="@color/title">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/group_buy_title"
+            android:textColor="@color/title_fore"
+            android:textSize="@dimen/group_buy_title" />
+    </RelativeLayout>
+
+    <!-- 秒团列表 -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_group_buy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_group_buy_title">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_group_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <com.wang.avi.AVLoadingIndicatorView
+        android:id="@+id/avi_group_buy"
+        style="@style/AVLoadingIndicatorView.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/main_theme"
+        app:indicatorName="BallPulseIndicator" />
+</RelativeLayout>
