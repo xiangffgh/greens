@@ -5,7 +5,8 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="top_title">50dp</dimen>
-
+    <dimen name="top_title_fore">22sp</dimen>
+    <dimen name="top_title_back">16sp</dimen>
     <dimen name="home_center_tools_group_buy_title">16sp</dimen>
     <dimen name="home_center_tools_group_buy_sub">10sp</dimen>
     <dimen name="home_center_tools_greens_title">14sp</dimen>

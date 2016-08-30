@@ -8,6 +8,7 @@
     <color name="backgroud">#F2F2F3</color>
     <color name="title">#41D9B1</color>
     <color name="title_fore">#ffffff</color>
+    <color name="separator">#E4E4E4</color>
     <color name="black_overlay">#66000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -32,4 +33,7 @@
     <color name="group_buy_item_status">#FF9E14</color>
     <color name="group_buy_item_total_order">#D6D6BE</color>
     <color name="group_buy_item_price">#71DEC1</color>
+
+
+    <color name="divider">#ffd2d2d2</color>
 </resources>

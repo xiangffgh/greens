@@ -51,4 +51,5 @@ dependencies {
     //滚动广告条需要的glide库
     compile 'com.github.bumptech.glide:glide:3.6.1'
 
+    compile 'ren.qinc.numberbutton:numberbutton:0.0.1'
 }

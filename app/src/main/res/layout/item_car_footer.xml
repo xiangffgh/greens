@@ -1,6 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_item_car_footer_totalPrice_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="商品总价格:"
+        />
+    <TextView
+        android:id="@+id/tv_item_car_footer_totalPrice_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_item_car_footer_totalPrice_t"
+        android:layout_toLeftOf="@+id/tv_item_car_footer_totalPrice"
+        android:text="￥"
+        />
+    <TextView
+        android:id="@+id/tv_item_car_footer_totalPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_item_car_footer_totalPrice_t"
+        android:text="13.5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="20dp"
+        />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_item_car_footer_freightPrice_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_car_footer_totalPrice_t"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="运费:"
+        />
+    <TextView
+        android:id="@+id/tv_item_car_footer_freightPrice_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_car_footer_totalPrice_t"
+        android:layout_alignBaseline="@+id/tv_item_car_footer_freightPrice_t"
+        android:layout_toLeftOf="@+id/tv_item_car_footer_totalPrice"
+        android:text="￥"
+        />
+    <TextView
+        android:id="@+id/tv_item_car_footer_freightPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_car_footer_totalPrice_t"
+        android:layout_alignBaseline="@+id/tv_item_car_footer_freightPrice_t"
+        android:text="0.0"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        />
+</RelativeLayout>

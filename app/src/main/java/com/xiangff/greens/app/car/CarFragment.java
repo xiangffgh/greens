@@ -4,12 +4,22 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.wang.avi.AVLoadingIndicatorView;
+import com.xiangff.greens.app.MainActivity;
 import com.xiangff.greens.app.R;
+import com.xiangff.greens.app.car.adapter.CarAdatper;
+import com.xiangff.greens.app.data.car.Car;
+import com.xiangff.greens.app.goupbuy.adapter.GroupBuyAdatper;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,51 +29,41 @@ import com.xiangff.greens.app.R;
  * Use the {@link CarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarFragment extends Fragment {
+public class CarFragment extends Fragment implements CarContract.View{
 
     private static final String TAG="CarFragment";
     private View rootView;//缓存 Fragment view
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     private OnFragmentInteractionListener mListener;
+
+    /*=======视图组件=======*/
+    private AVLoadingIndicatorView avi;
+    private SwipeRefreshLayout srl;
+    private LinearLayoutManager linearLayoutManager;
+    private RecyclerView recyclerView;
+    private CarAdatper carAdatper;
+
+    private CarContract.Presenter presenter;
+
+    @Override
+    public void setPresenter(CarContract.Presenter presenter) {
+        this.presenter=presenter;
+    }
+
+
 
     public CarFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CarFragment newInstance(String param1, String param2) {
+    public static CarFragment newInstance() {
         CarFragment fragment = new CarFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -73,6 +73,15 @@ public class CarFragment extends Fragment {
             Log.i(TAG, "onCreateView");
             // Inflate the layout for this fragment
             rootView=inflater.inflate(R.layout.fragment_car, container, false);
+            avi= (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_car);
+            srl= (SwipeRefreshLayout) rootView.findViewById(R.id.srl_car);
+            recyclerView= (RecyclerView) rootView.findViewById(R.id.rv_car);
+            linearLayoutManager=new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(linearLayoutManager);
+            this.carAdatper=new CarAdatper(getActivity());
+            recyclerView.setAdapter(this.carAdatper);
+            initListener();
+
         }
         ViewGroup parent = (ViewGroup) rootView.getParent();
         if (parent != null)
@@ -80,6 +89,10 @@ public class CarFragment extends Fragment {
             parent.removeView(rootView);
         }
         return rootView;
+    }
+
+    private void initListener() {
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -98,6 +111,22 @@ public class CarFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        Log.i(TAG, "CarFragment-onAttach");
+        if (context instanceof MainActivity){
+            ((MainActivity)context).setCarView(this);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i(TAG,"onResume");
+        if (this.presenter!=null){
+            //加载购物车数据
+            this.presenter.start();
+        }else{
+            Log.e(TAG,"carView对应的presenter不能为空 !");
+        }
     }
 
     @Override
@@ -105,6 +134,23 @@ public class CarFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+    @Override
+    public void showLoadingIndicator() {
+
+    }
+
+    @Override
+    public void hideLoadingIndicator() {
+
+    }
+
+    @Override
+    public void showCarDatas(Car car) {
+
+    }
+
+
 
     /**
      * This interface must be implemented by activities that contain this

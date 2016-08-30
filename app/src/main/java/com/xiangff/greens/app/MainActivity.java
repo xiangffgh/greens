@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.xiangff.greens.app.base.App;
 import com.xiangff.greens.app.base.BaseActivity;
 import com.xiangff.greens.app.base.BasePresenter;
 import com.xiangff.greens.app.car.CarFragment;
+import com.xiangff.greens.app.car.CarPresenter;
 import com.xiangff.greens.app.common.receiver.AppExitRecevier;
 import com.xiangff.greens.app.data.ProductRepository;
 import com.xiangff.greens.app.data.local.ProductLocalDataSource;
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
     private String frgmentTags[]={"TAG_HOME","TAG_GROUPBUY","TAG_CAR","TAG_FIND","TAG_MY"};
     private BasePresenter homePresenter;
     private BasePresenter groupBuyPresenter;
+    private BasePresenter carPresenter;
     private int tabImageArray[] = {R.mipmap.home_tab_1_p, R.mipmap.home_tab_2_p, R.mipmap.home_tab_3_p, R.mipmap.home_tab_4_p, R.mipmap.home_tab_5_p};
     private String tabNameArray[] = {"有货", "秒团", "购物车", "发现", "我的"};
 
@@ -64,6 +67,14 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
          * 初始MP
          */
         groupBuyPresenter=new GroupBuyPresenter(groupBuyView);
+    }
+    public void setCarView(CarFragment carView){
+        Log.i(TAG,"MainActivity-setCarView:"+carView);
+        /**
+         * 初始MP
+         */
+        carPresenter=new CarPresenter(carView);
+
     }
 
     private AppExitRecevier appExitRecevier = new AppExitRecevier() {
