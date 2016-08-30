@@ -71,6 +71,7 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (rootView == null) {
+
             Log.i(TAG, "onCreateView");
             // Inflate the layout for this fragment
             rootView = inflater.inflate(R.layout.fragment_group_buy, container, false);
