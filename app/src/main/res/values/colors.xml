@@ -7,6 +7,7 @@
     <color name="main_theme">#40D8B0</color>
     <color name="backgroud">#F2F2F3</color>
     <color name="title">#41D9B1</color>
+    <color name="title_fore">#ffffff</color>
     <color name="black_overlay">#66000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -24,4 +25,11 @@
     <color name="home_center_bargain_item_title">#1C1C1C</color>
     <color name="home_center_bargain_item_price_money">#EE7264</color>
     <color name="home_center_bargain_item_price_weigth">#878787</color>
+
+    <color name="group_buy_item_bg">#FFFFFF</color>
+    <color name="group_buy_item_title">#262626</color>
+    <color name="group_buy_item_sub">#989898</color>
+    <color name="group_buy_item_status">#FF9E14</color>
+    <color name="group_buy_item_total_order">#D6D6BE</color>
+    <color name="group_buy_item_price">#71DEC1</color>
 </resources>

@@ -1,4 +1,4 @@
-MVP - Drager2 -RxJava -RxBinding - RxBus(EventBus/Otto) - Retrofit- Guava - OKHttp - SqlBrite -GreenDao -Gson
+MVP - Drager2 -RxJava -RxBinding - RxBus(EventBus/Otto) - Retrofit- Guava - OKHttp - SqlBrite -GreenDao -Gson-ButterKnife
                                                                           - Android_Universal_Image_Loader
 
 

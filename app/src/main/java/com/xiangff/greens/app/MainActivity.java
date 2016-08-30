@@ -24,6 +24,7 @@ import com.xiangff.greens.app.data.local.ProductLocalDataSource;
 import com.xiangff.greens.app.data.remote.ProductRemoteDataSource;
 import com.xiangff.greens.app.find.FindFragment;
 import com.xiangff.greens.app.goupbuy.GroupBuyFragment;
+import com.xiangff.greens.app.goupbuy.GroupBuyPresenter;
 import com.xiangff.greens.app.home.HomeFragment;
 import com.xiangff.greens.app.home.HomePresenter;
 import com.xiangff.greens.app.my.MyFragment;
@@ -44,22 +45,25 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
     private Class fragmentArray[] = {HomeFragment.class, GroupBuyFragment.class, CarFragment.class, FindFragment.class, MyFragment.class};
     private String frgmentTags[]={"TAG_HOME","TAG_GROUPBUY","TAG_CAR","TAG_FIND","TAG_MY"};
     private BasePresenter homePresenter;
+    private BasePresenter groupBuyPresenter;
     private int tabImageArray[] = {R.mipmap.home_tab_1_p, R.mipmap.home_tab_2_p, R.mipmap.home_tab_3_p, R.mipmap.home_tab_4_p, R.mipmap.home_tab_5_p};
-    private String tabNameArray[] = {"有货", "团货", "购物车", "发现", "我的"};
+    private String tabNameArray[] = {"有货", "秒团", "购物车", "发现", "我的"};
 
-    private HomeFragment homeView;
-
-    public HomeFragment getHomeView() {
-        return homeView;
-    }
 
     public void setHomeView(HomeFragment homeView) {
-        this.homeView = homeView;
-        Log.i(TAG, "MainActivity-setHomeView-homeView:" + homeView);
+
+        Log.i(TAG, "MainActivity-setHomeView:" + homeView);
         /*
          *初始化 MP
          */
         homePresenter=new HomePresenter(ProductRepository.getInstance(ProductRemoteDataSource.getInstance(), ProductLocalDataSource.getInstance(this)),homeView);
+    }
+    public void setGroupBuyView(GroupBuyFragment groupBuyView){
+        Log.i(TAG,"MainActivity-setGroupBuyView:"+groupBuyView);
+        /**
+         * 初始MP
+         */
+        groupBuyPresenter=new GroupBuyPresenter(groupBuyView);
     }
 
     private AppExitRecevier appExitRecevier = new AppExitRecevier() {

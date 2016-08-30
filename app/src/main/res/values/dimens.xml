@@ -3,6 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="top_title">50dp</dimen>
+
     <dimen name="home_center_tools_group_buy_title">16sp</dimen>
     <dimen name="home_center_tools_group_buy_sub">10sp</dimen>
     <dimen name="home_center_tools_greens_title">14sp</dimen>
@@ -14,4 +17,15 @@
     <dimen name="home_center_bargain_price_title">14sp</dimen>
     <dimen name="home_center_bargain_item_title">16sp</dimen>
     <dimen name="home_center_bargain_item_price">14sp</dimen>
+
+    <dimen name="group_buy_title">22sp</dimen>
+    <dimen name="group_buy_item_margin_top">3dp</dimen>
+    <dimen name="group_buy_item_margin_left">3dp</dimen>
+    <dimen name="group_buy_item_image_height">100dp</dimen>
+    <dimen name="group_buy_item_image_width">100dp</dimen>
+    <dimen name="group_buy_item_title">14sp</dimen>
+    <dimen name="group_buy_item_sub">12sp</dimen>
+    <dimen name="group_buy_item_sub_little">10sp</dimen>
+    <dimen name="group_buy_item_sub_little_lettle">10sp</dimen>
+    <dimen name="group_buy_item_price">12sp</dimen>
 </resources>
