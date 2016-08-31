@@ -4,6 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
 
+    <dimen name="bottom_tab">12sp</dimen>
+
     <dimen name="top_title">50dp</dimen>
     <dimen name="top_title_fore">22sp</dimen>
     <dimen name="top_title_back">16sp</dimen>
