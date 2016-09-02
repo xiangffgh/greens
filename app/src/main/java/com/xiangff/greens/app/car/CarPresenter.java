@@ -27,6 +27,7 @@ public class CarPresenter implements CarContract.Presenter {
         new Handler().postAtTime(new Runnable() {
             @Override
             public void run() {
+                Car.getInstance().initDatas();
                 //查询数据库
                 for (int i = 0; i < 3; i++) {
                     CarItem item = new CarItem();
@@ -36,6 +37,7 @@ public class CarPresenter implements CarContract.Presenter {
                     item.setItemNum(1);
                     Car.getInstance().addItem(item);
                 }
+
                 //加载购物车数据
                 CarPresenter.this.view.showCarDatas(Car.getInstance());
             }

@@ -40,7 +40,7 @@ public class GroupBuyPresenter implements GroupBuyContract.Presenter {
     /**
      * 记录当前分页
      */
-    private int currentPage = 0;
+    private static int currentPage = 0;
 
     @Override
     public void initDatas() {
@@ -72,6 +72,7 @@ public class GroupBuyPresenter implements GroupBuyContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
+                        GroupBuyPresenter.currentPage -=1;
                         view.hideLoadingIndicator();
                         Log.e(TAG, e.getMessage(), e);
                     }

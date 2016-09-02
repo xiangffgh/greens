@@ -25,4 +25,8 @@
 
     <string name="group_buy_title">秒团</string>
     <string name="car_title">购物车</string>
+    <string name="car_order">去结算</string>
+    <string name="top_back">〈</string>
+
+    <string name="greens_title">蔬菜</string>
 </resources>

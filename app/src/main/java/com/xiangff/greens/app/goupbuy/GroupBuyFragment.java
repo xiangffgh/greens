@@ -35,7 +35,7 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
 
     private GroupBuyContract.Presenter presenter;
 
-    private boolean loading=false;
+    private boolean loading = false;
 
     /*=======视图组件=======*/
     private AVLoadingIndicatorView avi;
@@ -44,6 +44,7 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
     private RecyclerView recyclerView;
     private List<GBModel> gbModels;
     private GroupBuyAdatper gbAdatper;
+
     @Override
     public void setPresenter(GroupBuyContract.Presenter presenter) {
         this.presenter = presenter;
@@ -75,13 +76,13 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
             Log.i(TAG, "onCreateView");
             // Inflate the layout for this fragment
             rootView = inflater.inflate(R.layout.fragment_group_buy, container, false);
-            avi= (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_group_buy);
-            srl= (SwipeRefreshLayout) rootView.findViewById(R.id.srl_group_buy);
-            recyclerView= (RecyclerView) rootView.findViewById(R.id.rv_group_buy);
-            linearLayoutManager=new LinearLayoutManager(getActivity());
+            avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_group_buy);
+            srl = (SwipeRefreshLayout) rootView.findViewById(R.id.srl_group_buy);
+            recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_group_buy);
+            linearLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(linearLayoutManager);
-            this.gbModels=new ArrayList<>();
-            this.gbAdatper=new GroupBuyAdatper(getActivity(),this.gbModels);
+            this.gbModels = new ArrayList<>();
+            this.gbAdatper = new GroupBuyAdatper(getActivity(), this.gbModels);
             recyclerView.setAdapter(this.gbAdatper);
             initListener();
         }
@@ -108,9 +109,9 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                if(!srl.isRefreshing()){
+                if (!srl.isRefreshing()) {
                     int lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
-                    if(newState==RecyclerView.SCROLL_STATE_IDLE&&lastVisibleItem+1==gbAdatper.getItemCount()){
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == gbAdatper.getItemCount()) {
                         //调用Adapter里的changeMoreStatus方法来改变加载脚View的显示状态为：正在加载...
                         gbAdatper.changeMoreStatus(GroupBuyAdatper.ISLOADING);
                         /*加载更多数据*/
@@ -121,15 +122,19 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
         });
     }
 
+    private boolean hasLoaded = false;
+
     @Override
     public void onResume() {
         super.onResume();
+        if (!hasLoaded) {
         /*
          * 开始请求数据
          */
-        if (this.presenter != null)
-            this.presenter.start();
-        else Log.e(TAG,"GroupBuyFragment view`s Prenster should not be null !");
+            if (this.presenter != null)
+                this.presenter.start();
+            else Log.e(TAG, "GroupBuyFragment view`s Prenster should not be null !");
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -148,9 +153,9 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
-        Log.i(TAG,"GroupBuyFragment-onAttach");
-        if (context instanceof MainActivity){
-            ((MainActivity)context).setGroupBuyView(this);
+        Log.i(TAG, "GroupBuyFragment-onAttach");
+        if (context instanceof MainActivity) {
+            ((MainActivity) context).setGroupBuyView(this);
         }
     }
 
@@ -168,11 +173,12 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
     @Override
     public void hideLoadingIndicator() {
         avi.hide();
+        hasLoaded=true;
     }
 
     @Override
     public void setDatas(List<GBModel> gbModels) {
-        if (gbModels!=null){
+        if (gbModels != null) {
             this.gbModels.clear();
             this.gbModels.addAll(gbModels);
             this.gbAdatper.notifyDataSetChanged();
@@ -182,7 +188,7 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
 
     @Override
     public void addDatas(List<GBModel> gbModels) {
-        if (gbModels!=null){
+        if (gbModels != null) {
             this.gbModels.addAll(gbModels);
             this.gbAdatper.notifyDataSetChanged();
         }

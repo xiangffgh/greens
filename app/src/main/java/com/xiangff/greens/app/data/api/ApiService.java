@@ -1,6 +1,7 @@
 package com.xiangff.greens.app.data.api;
 
 
+import com.xiangff.greens.app.data.Product;
 import com.xiangff.greens.app.data.adv.Adv;
 import com.xiangff.greens.app.data.groupbuy.GBModel;
 
@@ -24,4 +25,7 @@ public interface ApiService {
 
     @GET("groupbuy/gbs.do")
     Observable<List<GBModel>> getGbModels(@Query("currentPage") int currentPage);
+
+    @GET("greens/list.do")
+    Observable<List<Product>> getGreens(@Query("currentPage") int currentPage);
 }

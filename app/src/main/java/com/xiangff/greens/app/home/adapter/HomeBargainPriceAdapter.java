@@ -75,6 +75,19 @@ public class HomeBargainPriceAdapter extends RecyclerView.Adapter<HomeBargainPri
         return products.size();
     }
 
+    public void setDatas(List<Product> datas){
+        if (datas!=null){
+            this.products=datas;
+            notifyDataSetChanged();
+        }
+    }
+    public void addDatas(List<Product> datas){
+        if (datas!=null){
+            this.products.addAll(datas);
+            notifyDataSetChanged();
+        }
+    }
+
     // 使用DisplayImageOptions.Builder()创建DisplayImageOptions
     DisplayImageOptions options = new DisplayImageOptions.Builder()
             .showImageOnLoading(R.mipmap.ic_launcher) // 设置图片下载期间显示的图片

@@ -40,9 +40,8 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void start() {
-        count = 2;
+        count = 1;
         homeView.showLoadingIndicator();
-        getTitle();
         loadRollingAdvertisement();
     }
 
@@ -76,35 +75,35 @@ public class HomePresenter implements HomeContract.Presenter {
 
     }
 
-    @Override
-    public void getTitle() {
-        homeView.setTitle("");
-        ApiServiceManager.getInstance().getApiService().getLoginInfo("z", "1")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<ResultModel>() {
-                    @Override
-                    public void onCompleted() {
-//                        homeView.hideLoadingIndicator();
-                        computHideLoadingIndicator();
-                        Log.i(TAG, "getTitle-onCompleted");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-//                        homeView.hideLoadingIndicator();
-                        computHideLoadingIndicator();
-                        Log.e(TAG, e.getMessage(), e);
-                    }
-
-                    @Override
-                    public void onNext(ResultModel resultModel) {
-                        Log.i(TAG, "getTitle - onNext-s:" + resultModel.toString());
-                        homeView.setTitle(resultModel.toString());
-                    }
-                });
-
-    }
+//    @Override
+//    public void getTitle() {
+//        homeView.setTitle("");
+//        ApiServiceManager.getInstance().getApiService().getLoginInfo("z", "1")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<ResultModel>() {
+//                    @Override
+//                    public void onCompleted() {
+////                        homeView.hideLoadingIndicator();
+//                        computHideLoadingIndicator();
+//                        Log.i(TAG, "getTitle-onCompleted");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+////                        homeView.hideLoadingIndicator();
+//                        computHideLoadingIndicator();
+//                        Log.e(TAG, e.getMessage(), e);
+//                    }
+//
+//                    @Override
+//                    public void onNext(ResultModel resultModel) {
+//                        Log.i(TAG, "getTitle - onNext-s:" + resultModel.toString());
+//                        homeView.setTitle(resultModel.toString());
+//                    }
+//                });
+//
+//    }
 
     /**
      * 判断是否隐藏加载指示视图

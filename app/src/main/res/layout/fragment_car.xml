@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.xiangff.greens.app.car.CarFragment">
     <RelativeLayout
         android:id="@+id/rl_car_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_title"
         android:background="@color/title">
+        <!--
         <LinearLayout
             android:id="@+id/ll_car_back"
             android:layout_width="wrap_content"
@@ -21,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="《"
+                android:text="@string/top_back"
                 android:layout_alignParentLeft="true"
                 android:layout_marginLeft="10sp"
                 android:layout_centerVertical="true"
@@ -39,7 +41,7 @@
                 android:textSize="@dimen/top_title_back"
                 />
         </LinearLayout>
-
+        -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -80,5 +82,67 @@
         android:visibility="gone"
         app:indicatorColor="@color/main_theme"
         app:indicatorName="BallPulseIndicator" />
+    <RelativeLayout
+        android:id="@+id/rl_car_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/car_bottom_bg"
+        >
+        <CheckBox
+            android:id="@+id/cb_car_check"
+            style="@style/carCheckBoxStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="" />
+        <TextView
+            android:id="@+id/tv_car_bottom_price_t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/tv_car_bottom_price_sign"
+            android:layout_alignBaseline="@+id/tv_car_bottom_total_price"
+            android:text="合计:"
+            android:textColor="@color/car_bottom_total_price"
+            android:textSize="@dimen/car_bottom_total_price"
 
+            />
+        <TextView
+            android:id="@+id/tv_car_bottom_price_sign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/tv_car_bottom_total_price"
+            android:layout_alignBaseline="@+id/tv_car_bottom_total_price"
+            android:text="￥"
+            android:textColor="@color/car_bottom_total_price"
+            android:textSize="@dimen/car_bottom_total_price"
+
+            />
+        <TextView
+            android:id="@+id/tv_car_bottom_total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/btn_car_order"
+            android:layout_margin="5dp"
+            android:text="10.0"
+            android:textColor="@color/car_bottom_total_price"
+            android:textSize="@dimen/car_bottom_total_price"
+            />
+
+        <Button
+            android:id="@+id/btn_car_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/car_order"
+            android:textColor="@color/white"
+            android:background="@color/car_bottom_none"
+            />
+    </RelativeLayout>
 </RelativeLayout>

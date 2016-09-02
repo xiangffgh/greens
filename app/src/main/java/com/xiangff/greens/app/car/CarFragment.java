@@ -91,8 +91,17 @@ public class CarFragment extends Fragment implements CarContract.View{
         return rootView;
     }
 
+    /**
+     * 初始化监听器
+     */
     private void initListener() {
-
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                /*上拉刷新数据*/
+                presenter.loadCarDatas();
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -147,7 +156,8 @@ public class CarFragment extends Fragment implements CarContract.View{
 
     @Override
     public void showCarDatas(Car car) {
-
+        this.carAdatper.notifyDataSetChanged();
+        this.srl.setRefreshing(false);
     }
 
 

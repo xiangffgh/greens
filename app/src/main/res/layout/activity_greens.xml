@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroud"
+    tools:context="com.xiangff.greens.app.home.greens.GreensActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_greens_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_title"
+        android:background="@color/title">
+        <LinearLayout
+            android:id="@+id/ll_greens_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/top_back"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10sp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/title_fore"
+                android:textSize="@dimen/top_title_fore"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="返回"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="10sp"
+                android:layout_centerVertical="true"
+                android:textColor="@color/title_fore"
+                android:textSize="@dimen/top_title_back"
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/greens_title"
+            android:textColor="@color/title_fore"
+            android:textSize="@dimen/top_title_fore" />
+        <ImageButton
+            android:id="@+id/btn_greens_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:src="@mipmap/trash"
+            />
+    </RelativeLayout>
+    <!-- 蔬菜列表 -->
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_greens"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_greens_title">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_greens"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.wang.avi.AVLoadingIndicatorView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/avi_greens"
+        style="@style/AVLoadingIndicatorView.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/main_theme"
+        app:indicatorName="BallPulseIndicator" />
+
+</RelativeLayout>

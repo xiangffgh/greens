@@ -9,6 +9,7 @@
     <color name="title">#41D9B1</color>
     <color name="title_fore">#ffffff</color>
     <color name="separator">#E4E4E4</color>
+    <color name="divider">#ffd2d2d2</color>
     <color name="black_overlay">#66000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -35,5 +36,11 @@
     <color name="group_buy_item_price">#71DEC1</color>
 
 
-    <color name="divider">#ffd2d2d2</color>
+    <color name="car_bottom_bg">#F5F5F6</color>
+    <color name="car_bottom_none">#CFCFCF</color>
+    <color name="car_bottom_have">#FC4C4E</color>
+    <color name="car_bottom_total_price">#FC4C4E</color>
+
+    <color name="my_divider">#EBEBEC</color>
+    <color name="my_fore">#515151</color>
 </resources>

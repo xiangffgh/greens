@@ -1,6 +1,7 @@
 package com.xiangff.greens.app.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -20,10 +22,15 @@ import com.xiangff.greens.app.R;
 import com.xiangff.greens.app.data.Product;
 import com.xiangff.greens.app.data.adv.Adv;
 import com.xiangff.greens.app.home.adapter.HomeBargainPriceAdapter;
+import com.xiangff.greens.app.home.greens.GreensActivity;
 import com.yyydjk.library.BannerLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -35,12 +42,24 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private HomeContract.Presenter presenter;
 
     private OnFragmentInteractionListener mListener;
-    private AVLoadingIndicatorView avi;
-    private TextView tvTitle;
-    private List<Adv> advs = new ArrayList<Adv>();
-    BannerLayout bannerLayout;
 
-    private RecyclerView bargainsRecyclerView;
+    @BindView(R.id.avi_home)
+    AVLoadingIndicatorView avi;
+    @BindView(R.id.rl_home_tools_garden)
+    RelativeLayout rlGardenTool;
+    @BindView(R.id.rl_home_tools_greens)
+    RelativeLayout rlGreensTool;
+    @BindView(R.id.rl_home_tools_cookbook)
+    RelativeLayout rlCookbookTool;
+    @BindView(R.id.rl_home_tools_health)
+    RelativeLayout rlHealthTool;
+
+
+    private List<Adv> advs = new ArrayList<Adv>();
+    @BindView(R.id.banner_home)
+    BannerLayout bannerLayout;
+    @BindView(R.id.rv_home_bargains)
+    RecyclerView bargainsRecyclerView;
     private List<Product> bargainProducts;
     private RecyclerView.Adapter homeBargainPriceAdapter;
 
@@ -75,32 +94,32 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             Log.i(TAG, "onCreateView");
             // Inflate the layout for this fragment
             rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_home);
-            tvTitle = (TextView) rootView.findViewById(R.id.tv_home_title);
-            bannerLayout= (BannerLayout) rootView.findViewById(R.id.banner_home);
+            ButterKnife.bind(this, rootView);
+//            avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_home);
+//            bannerLayout= (BannerLayout) rootView.findViewById(R.id.banner_home);
             //添加监听事件
             bannerLayout.setOnBannerItemClickListener(new BannerLayout.OnBannerItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
 //                    Toast.makeText(MainActivity.this, String.valueOf(position), Toast.LENGTH_SHORT).show();
-                    Log.i(TAG,"点击了公告:"+position);
+                    Log.i(TAG, "点击了公告:" + position);
                 }
             });
-            bargainsRecyclerView= (RecyclerView) rootView.findViewById(R.id.rv_home_bargains);
-            bargainsRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
-            bargainProducts=new ArrayList<Product>();
-            for (int i=0;i<10;i++){
-                Product p=new Product();
-                p.setId(i+1);
-                p.setTitle("新鲜"+i);
+//            bargainsRecyclerView= (RecyclerView) rootView.findViewById(R.id.rv_home_bargains);
+            bargainsRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            bargainProducts = new ArrayList<Product>();
+            for (int i = 0; i < 10; i++) {
+                Product p = new Product();
+                p.setId(i + 1);
+                p.setTitle("新鲜" + i);
                 p.setPrice("1.5");
                 p.setPriceUnit("元");
                 p.setWeigh("500");
                 p.setWeighUnit("g");
-                p.setUrl("http://10.0.2.2:8080/androidHtml5/greens"+(i+1)+".jpg");
+                p.setUrl("http://10.0.2.2:8080/androidHtml5/greens" + (i + 1) + ".jpg");
                 bargainProducts.add(p);
             }
-            homeBargainPriceAdapter=new HomeBargainPriceAdapter(getActivity(),bargainProducts);
+            homeBargainPriceAdapter = new HomeBargainPriceAdapter(getActivity(), bargainProducts);
             bargainsRecyclerView.setAdapter(homeBargainPriceAdapter);
         }
         // 缓存的rootView需要判断是否已经被加过parent，如果有parent需要从parent删除，要不然会发生这个rootview已经有parent的错误。
@@ -111,9 +130,28 @@ public class HomeFragment extends Fragment implements HomeContract.View {
 
         return rootView;
     }
+    @OnClick({R.id.rl_home_tools_garden,R.id.rl_home_tools_greens,R.id.rl_home_tools_cookbook,R.id.rl_home_tools_health})
+    public void onClick(View view){
+        Intent intent;
+        switch (view.getId()){
+            case R.id.rl_home_tools_garden:
+                Log.i(TAG,"to Garden");
 
+                break;
+            case R.id.rl_home_tools_greens:
+                Log.i(TAG,"toGreens");
+                intent=new Intent(getActivity(),GreensActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.rl_home_tools_health:
+                Log.i(TAG,"toHealth");
+                break;
+            case R.id.rl_home_tools_cookbook:
+                Log.i(TAG,"toCookBook");
+                break;
+        }
+    }
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -135,14 +173,18 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         }
     }
 
+    private boolean hasLoaded = false;
+
     @Override
     public void onResume() {
         super.onResume();
-        //开始请求数据
-        if (presenter != null) {
-            presenter.start();
-        } else
-            Log.e(TAG, "presenter cannot bu null!");
+        if (!hasLoaded) {
+            //开始请求数据
+            if (presenter != null) {
+                presenter.start();
+            } else
+                Log.e(TAG, "presenter cannot bu null!");
+        }
     }
 
     @Override
@@ -159,13 +201,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     @Override
     public void hideLoadingIndicator() {
         avi.hide();
-    }
-
-    @Override
-    public void setTitle(String title) {
-        Log.i("=======", "HomeView.setTitle:" + title);
-//        tvTitle
-//                .setText(title);
+        hasLoaded = true;
     }
 
     /**
@@ -177,7 +213,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void setAdvs(List<Adv> advs) {
         this.advs.clear();
         this.advs.addAll(advs);
-        List<String> urls=new ArrayList<String>();
+        List<String> urls = new ArrayList<String>();
         for (Adv adv :
                 advs) {
             urls.add(adv.getUrl());

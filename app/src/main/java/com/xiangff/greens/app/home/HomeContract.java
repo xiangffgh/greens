@@ -14,7 +14,6 @@ public class HomeContract {
 
         void showLoadingIndicator();
         void hideLoadingIndicator();
-        void setTitle(String title);
         void setAdvs(List<Adv> advs);
     }
 
@@ -23,6 +22,6 @@ public class HomeContract {
             void loadRollingAdvertisement();
             /**加载特价产品*/
             void loadBargainPriceProduct();
-            void getTitle();
+
     }
 }

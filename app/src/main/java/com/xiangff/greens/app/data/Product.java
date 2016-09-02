@@ -9,6 +9,7 @@ public class Product {
     private int id;
     private String name;
     private String title;
+    private String address;
     private String price;
     private String priceUnit;
     private String weigh;
@@ -98,5 +99,22 @@ public class Product {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", title='" + title + '\'' +
+                ", address='" + address + '\'' +
+                ", price='" + price + '\'' +
+                ", priceUnit='" + priceUnit + '\'' +
+                ", weigh='" + weigh + '\'' +
+                ", weighUnit='" + weighUnit + '\'' +
+                ", url='" + url + '\'' +
+                ", createDate='" + createDate + '\'' +
+                ", isBargain=" + isBargain +
+                '}';
     }
 }

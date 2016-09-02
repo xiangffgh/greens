@@ -30,7 +30,10 @@ public class Car {
         this.items.add(item);
         computTotalPrice();
     }
-
+    public void initDatas(){
+        if (this.items!=null)
+            this.items.clear();
+    }
     public void addItemNum(CarItem item) {
         if (items.contains(item)) {
             item.setItemNum(item.getItemNum() + 1);

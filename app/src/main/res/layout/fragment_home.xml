@@ -6,13 +6,6 @@
     android:background="@color/backgroud"
     tools:context="com.xiangff.greens.app.home.HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv_home_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
     <RelativeLayout
         android:id="@+id/rl_home_title"
         android:layout_width="match_parent"
@@ -124,6 +117,7 @@
                 android:orientation="horizontal">
 
                 <RelativeLayout
+                    android:id="@+id/rl_home_tools_garden"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -135,7 +129,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="5dp"
-                        android:text="团购预定"
+                        android:text="我的菜园"
                         android:textColor="@color/home_center_tools_group_by_title"
                         android:textSize="@dimen/home_center_tools_group_buy_title" />
 
@@ -146,7 +140,7 @@
                         android:layout_below="@+id/tv_home_center_tools_group_buy_title"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="3dp"
-                        android:text="你喝咖啡我来买"
+                        android:text="拥有属于自己的菜地"
                         android:textColor="@color/home_center_tools_group_by_subTitle"
                         android:textSize="@dimen/home_center_tools_group_buy_sub" />
                     <ImageView
@@ -168,6 +162,7 @@
                     android:orientation="vertical"
                     >
                     <RelativeLayout
+                        android:id="@+id/rl_home_tools_greens"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1.5"
@@ -210,6 +205,7 @@
                         android:orientation="horizontal"
                         >
                         <RelativeLayout
+                            android:id="@+id/rl_home_tools_cookbook"
                             android:layout_width="0dp"
                             android:layout_weight="1.5"
                             android:layout_height="match_parent"
@@ -244,6 +240,7 @@
                                 />
                         </RelativeLayout>
                         <RelativeLayout
+                            android:id="@+id/rl_home_tools_health"
                             android:layout_width="0dp"
                             android:layout_weight="2"
                             android:layout_height="match_parent"
