@@ -6,7 +6,6 @@ import com.xiangff.greens.app.data.car.Car;
 import com.xiangff.greens.app.data.car.CarItem;
 
 /**
- *
  * Created by xiangff on 2016/8/30.
  */
 public class CarPresenter implements CarContract.Presenter {
@@ -22,27 +21,11 @@ public class CarPresenter implements CarContract.Presenter {
     public void start() {
         loadCarDatas();
     }
+
     @Override
     public void loadCarDatas() {
-        new Handler().postAtTime(new Runnable() {
-            @Override
-            public void run() {
-                Car.getInstance().initDatas();
-                //查询数据库
-                for (int i = 0; i < 3; i++) {
-                    CarItem item = new CarItem();
-                    item.setItemNum((i + 1));
-                    item.setProductId((i + 1));
-                    item.setProductPrice("12.5");
-                    item.setItemNum(1);
-                    Car.getInstance().addItem(item);
-                }
-
-                //加载购物车数据
-                CarPresenter.this.view.showCarDatas(Car.getInstance());
-            }
-        },3000);
-
+        //加载购物车数据
+        CarPresenter.this.view.showCarDatas(Car.getInstance());
     }
 
     @Override

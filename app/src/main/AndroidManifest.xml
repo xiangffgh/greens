@@ -39,7 +39,12 @@
         <activity
             android:name=".login.LoginActivity"
             android:label="@string/title_activity_login" />
-        <activity android:name=".home.greens.GreensActivity"></activity>
+        <activity android:name=".home.greens.GreensActivity" />
+        <activity
+            android:name=".home.greens.greendetail.GreenDetailActivity"
+            android:label="@string/title_activity_green_detail"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".goupbuy.groupbuydetail.GroupbuyDetailActivity"></activity>
     </application>
 
 </manifest>

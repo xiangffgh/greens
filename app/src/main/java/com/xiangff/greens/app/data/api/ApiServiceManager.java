@@ -10,8 +10,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * <p/>
  * Created by xiangff on 2016/8/23.
  */
-public class ApiServiceManager {
-    private static final String ENDPOINT = "http://10.0.2.2:8080/androidHtml5/";
+public class ApiServiceManager {            //http://10.0.2.2:8080
+    private static final String ENDPOINT = "http://www.jccna.com/androidHtml5/";
 
     private ApiServiceManager() {
     }

@@ -3,34 +3,34 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:padding="10dp"
     android:background="@drawable/layout_border"
-    >
+    android:padding="10dp">
+
     <ImageView
         android:id="@+id/iv_item_home_bargain"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="5dp"
-        android:src="@mipmap/ic_launcher"
-        />
+        android:src="@mipmap/ic_launcher" />
+
     <TextView
         android:id="@+id/tv_item_home_bargain_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_item_home_bargain"
         android:text="特价-西瓜"
-        android:textSize="@dimen/home_center_bargain_item_title"
         android:textColor="@color/home_center_bargain_item_title"
-        />
+        android:textSize="@dimen/home_center_bargain_item_title" />
+
     <TextView
         android:id="@+id/tv_item_home_bargain_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_item_home_bargain_title"
         android:text="￥ 1.5元/"
-        android:textSize="@dimen/home_center_bargain_item_price"
         android:textColor="@color/home_center_bargain_item_price_money"
-        />
+        android:textSize="@dimen/home_center_bargain_item_price" />
+
     <TextView
         android:id="@+id/tv_item_home_bargain_price_weigth"
         android:layout_width="wrap_content"
@@ -38,18 +38,17 @@
         android:layout_below="@+id/tv_item_home_bargain_title"
         android:layout_toRightOf="@+id/tv_item_home_bargain_price"
         android:text="500g"
-        android:textSize="@dimen/home_center_bargain_item_price"
         android:textColor="@color/home_center_bargain_item_price_weigth"
-        />
+        android:textSize="@dimen/home_center_bargain_item_price" />
+
     <ImageButton
         android:id="@+id/btn_item_home_bargain_buy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:src="@mipmap/add"
-        android:background="@null"
         android:layout_alignParentRight="true"
-        android:layout_marginLeft="5dp"
         android:layout_marginBottom="10dp"
-        />
+        android:layout_marginLeft="5dp"
+        android:background="@null"
+        android:src="@mipmap/add" />
 </RelativeLayout>

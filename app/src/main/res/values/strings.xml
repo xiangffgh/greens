@@ -19,14 +19,17 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
     <string name="group_buy_title">秒团</string>
     <string name="car_title">购物车</string>
     <string name="car_order">去结算</string>
     <string name="top_back">〈</string>
-
     <string name="greens_title">蔬菜</string>
+    <string name="find_title">发现</string>
+    <!-- 产品详情页 -->
+    <string name="green_detail_title">详情</string>
+    <string name="title_activity_green_detail">GreenDetailActivity</string>
+
+    <!-- 秒购详情 -->
+    <string name="groupbuy_detail_title">详情</string>
 </resources>

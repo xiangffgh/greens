@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_item_green_detail_comment_footer_more"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:clickable="true"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_item_green_detail_comment_footer_count"
+        android:text="查看"
+        android:textSize="18sp"
+        android:textColor="@color/comment_item_sub"
+        android:layout_toLeftOf="@+id/tv_item_green_detail_comment_footer_count"
+        />
+    <TextView
+        android:id="@+id/tv_item_green_detail_comment_footer_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="0"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_item_green_detail_comment_footer_count"
+        android:text="条评价"
+        android:textSize="18sp"
+        android:textColor="@color/comment_item_sub"
+        android:layout_toRightOf="@+id/tv_item_green_detail_comment_footer_count"
+        />
+</RelativeLayout>

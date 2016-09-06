@@ -38,7 +38,7 @@
         android:layout_alignTop="@+id/iv_item_car"
         android:layout_margin="5dp"
         android:layout_toRightOf="@+id/iv_item_car"
-        android:text="烟台苹果"
+        android:text=""
 
         />
 
@@ -58,7 +58,7 @@
         android:layout_alignBottom="@+id/iv_item_car"
         android:layout_marginBottom="5dp"
         android:layout_toRightOf="@+id/tv_item_car_price_t"
-        android:text="13.5" />
+        android:text="0.0" />
     <!--
     <com.xiangff.greens.app.view.AmountView
         android:id="@+id/amount_view"

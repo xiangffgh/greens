@@ -98,7 +98,7 @@ public class GreensAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof GreensItemViewHolder) {
-            GreensItemViewHolder holder = (GreensItemViewHolder) viewHolder;
+            final GreensItemViewHolder holder = (GreensItemViewHolder) viewHolder;
             Product p = this.products.get(position);
             ImageLoader.getInstance().displayImage(p.getUrl(), holder.ivPic, options);
             if (TextUtils.isEmpty(p.getTitle())) p.setTitle("");
@@ -109,6 +109,19 @@ public class GreensAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             if (TextUtils.isEmpty(p.getWeighUnit())) p.setWeighUnit("g");
             holder.tvPrice.setText("￥" + p.getPrice() + p.getPriceUnit() + "/");
             holder.tvWeigth.setText(p.getWeigh() + p.getWeighUnit());
+
+            //绑定单击事件
+            // 如果设置了回调，则设置点击事件
+            if (mOnItemClickLitener != null)
+            {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int pos = holder.getLayoutPosition();
+                        mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                    }
+                });
+            }
         }else if(viewHolder instanceof GroupBuyFooterViewHolder){
             GreensFooterViewHolder footer = (GreensFooterViewHolder) viewHolder;
             switch(load_more_status){
@@ -140,6 +153,9 @@ public class GreensAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
 
     }
+    public List<Product> getDatas(){
+        return this.products;
+    }
 
     // 使用DisplayImageOptions.Builder()创建DisplayImageOptions
     DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -150,4 +166,20 @@ public class GreensAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             .cacheOnDisk(true) // 设置下载的图片是否缓存在SD卡中
 //    .displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片
             .build(); // 构建完成
+
+    /*
+     * ==========点击事件=========
+     */
+    public interface OnItemClickLitener
+    {
+        void onItemClick(View view, int position);
+    }
+
+    private OnItemClickLitener mOnItemClickLitener;
+
+    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener)
+    {
+        this.mOnItemClickLitener = mOnItemClickLitener;
+    }
+
 }

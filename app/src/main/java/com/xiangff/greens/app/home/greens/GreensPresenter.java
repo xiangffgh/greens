@@ -70,8 +70,8 @@ public class GreensPresenter implements GreensContract.Presenter {
 
                     @Override
                     public void onNext(List<Product> products) {
-                        Log.i(TAG, products.toString());
-                        if (currentPage>0){
+                        Log.i(TAG, "获取的蔬菜列表的个数:"+products.size());
+                        if (currentPage<=0){
                             view.setDatas(products);
                         }else{
                             view.addDatas(products);

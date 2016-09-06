@@ -1,17 +1,20 @@
 package com.xiangff.greens.app.home.greens;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.xiangff.greens.app.R;
 import com.xiangff.greens.app.base.BasePresenter;
 import com.xiangff.greens.app.data.Product;
 import com.xiangff.greens.app.home.greens.adatper.GreensAdatper;
+import com.xiangff.greens.app.home.greens.greendetail.GreenDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,15 +87,25 @@ public class GreensActivity extends AppCompatActivity implements GreensContract.
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!srl.isRefreshing()) {
                     int lastVisibleItem = gridLayoutManager.findLastVisibleItemPosition();
-                    Log.i(TAG,"lastVisibleItem:"+lastVisibleItem);
+                    Log.i(TAG, "lastVisibleItem:" + lastVisibleItem);
                     if (newState == RecyclerView.SCROLL_STATE_IDLE && lastVisibleItem + 1 == productAdatper.getItemCount()) {
                         //调用Adapter里的changeMoreStatus方法来改变加载脚View的显示状态为：正在加载...
                         productAdatper.changeMoreStatus(productAdatper.ISLOADING);
                         /*加载更多数据*/
-                        if (presenter instanceof GreensPresenter){
-                            ((GreensPresenter)presenter).loadMoreDatas();
+                        if (presenter instanceof GreensPresenter) {
+                            ((GreensPresenter) presenter).loadMoreDatas();
                         }
                     }
+                }
+            }
+        });
+        productAdatper.setOnItemClickLitener(new GreensAdatper.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent=new Intent(GreensActivity.this, GreenDetailActivity.class);
+                if (position<productAdatper.getDatas().size()){
+                    intent.putExtra("green",productAdatper.getDatas().get(position));
+                    startActivity(intent);
                 }
             }
         });

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroud"
+    android:fitsSystemWindows="true"
+    tools:context="com.xiangff.greens.app.home.greens.greendetail.GreenDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_groupbuy_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_title"
+        android:background="@color/title">
+
+        <LinearLayout
+            android:id="@+id/ll_groupbuy_detail_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10sp"
+                android:text="@string/top_back"
+                android:textColor="@color/title_fore"
+                android:textSize="@dimen/top_title_fore" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10sp"
+                android:text="返回"
+                android:textColor="@color/title_fore"
+                android:textSize="@dimen/top_title_back" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/groupbuy_detail_title"
+            android:textColor="@color/title_fore"
+            android:textSize="@dimen/top_title_fore" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/sv_groupbuy_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_groupbuy_detail_title">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.yyydjk.library.BannerLayout
+                android:id="@+id/banner_groupbuy_detail"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/white"
+                app:autoPlayDuration="5000"
+                app:defaultImage="@mipmap/ic_launcher"
+                app:indicatorMargin="10dp"
+                app:indicatorPosition="rightBottom"
+                app:indicatorShape="rect"
+                app:indicatorSpace="3dp"
+                app:scrollDuration="900"
+                app:selectedIndicatorColor="?attr/colorPrimary"
+                app:selectedIndicatorHeight="6dp"
+                app:selectedIndicatorWidth="6dp"
+                app:unSelectedIndicatorColor="#99ffffff"
+                app:unSelectedIndicatorHeight="6dp"
+                app:unSelectedIndicatorWidth="6dp" />
+            <!-- 商品信息 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="20dp"
+                    android:paddingLeft="10dp"
+                    android:text="山东烟台大桃子 16-24个 新鲜水果"
+                    android:textColor="#313131"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@color/divider" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_price_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="￥"
+                    android:textColor="@color/groupbuy_detail_price"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_groupbuy_detail_price_sign"
+                    android:layout_toRightOf="@+id/tv_groupbuy_detail_price_sign"
+                    android:text="0.00"
+                    android:textColor="@color/groupbuy_detail_price"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_originPrice_sign"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_groupbuy_detail_price_sign"
+                    android:layout_marginTop="10dp"
+                    android:text="￥ 50.00" />
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_discount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/tv_groupbuy_detail_originPrice_sign"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/tv_groupbuy_detail_originPrice_sign"
+                    android:text="7.2折" />
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_groupbuy_detail_originPrice_sign"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="本产品为自营产品提供现货，18点以前下单，当前出库。"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <!-- 商品评价 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_pingjia_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="购买须知"
+                    android:textColor="@color/groupbuy_detail_price"
+                    android:textSize="24sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_groupbuy_detail_pingjia_t"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/divider" />
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_groupbuy_detail_pingjia_t"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/red" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:lineSpacingExtra="10dp"
+                android:padding="20dp"
+                android:text="接受电话预定(电话预定可以商议购买金斤数和价格 \n 电话:13969158260 \n 收割时间: 2016-10-11\n" />
+
+            <!-- 图片信息 -->
+            <!-- 为收割图片 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_no_harvest_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="未收割图片"
+                    android:textColor="#BBBBBB"
+                    android:textSize="24sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_groupbuy_detail_no_harvest_t"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/divider" />
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_groupbuy_detail_no_harvest_t"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/red" />
+            </RelativeLayout>
+            <com.yyydjk.library.BannerLayout
+                android:id="@+id/banner_groupbuy_detail_no_harvest"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                app:autoPlayDuration="5000"
+                app:defaultImage="@mipmap/ic_launcher"
+                app:indicatorMargin="10dp"
+                app:indicatorPosition="rightBottom"
+                app:indicatorShape="rect"
+                app:indicatorSpace="3dp"
+                app:scrollDuration="900"
+                app:selectedIndicatorColor="?attr/colorPrimary"
+                app:selectedIndicatorHeight="6dp"
+                app:selectedIndicatorWidth="6dp"
+                app:unSelectedIndicatorColor="#99ffffff"
+                app:unSelectedIndicatorHeight="6dp"
+                app:unSelectedIndicatorWidth="6dp" />
+            <!-- 收割图片 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_groupbuy_detail_harvesting_t"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:text="正在收割图片"
+                    android:textColor="#BBBBBB"
+                    android:textSize="24sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/tv_groupbuy_detail_harvesting_t"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/divider" />
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/tv_groupbuy_detail_harvesting_t"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:background="@color/red" />
+            </RelativeLayout>
+            <com.yyydjk.library.BannerLayout
+                android:id="@+id/banner_groupbuy_detail_harvesting"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="10dp"
+                android:background="@color/white"
+                app:autoPlayDuration="5000"
+                app:defaultImage="@mipmap/ic_launcher"
+                app:indicatorMargin="10dp"
+                app:indicatorPosition="rightBottom"
+                app:indicatorShape="rect"
+                app:indicatorSpace="3dp"
+                app:scrollDuration="900"
+                app:selectedIndicatorColor="?attr/colorPrimary"
+                app:selectedIndicatorHeight="6dp"
+                app:selectedIndicatorWidth="6dp"
+                app:unSelectedIndicatorColor="#99ffffff"
+                app:unSelectedIndicatorHeight="6dp"
+                app:unSelectedIndicatorWidth="6dp" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

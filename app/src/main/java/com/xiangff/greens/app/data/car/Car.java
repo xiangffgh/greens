@@ -1,17 +1,18 @@
 package com.xiangff.greens.app.data.car;
 
+import android.util.Log;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * Created by xiangff on 2016/8/30.
  */
 public class Car {
 
-    private static class CarHolder{
-        public static final Car car=new Car();
+    private static class CarHolder {
+        public static final Car car = new Car();
     }
 
     private List<CarItem> items;
@@ -22,22 +23,34 @@ public class Car {
         if (items == null)
             items = new ArrayList<CarItem>();
     }
-    public static Car getInstance(){
+
+    public static Car getInstance() {
         return CarHolder.car;
     }
-
+    public List<CarItem> getItems(){
+        return items;
+    }
     public void addItem(CarItem item) {
+        if (items.contains(item)) {
+            item.setItemNum(item.getItemNum() + 1);
+            computTotalPrice();
+            return;
+        }
+        item.setItemNum(1);
         this.items.add(item);
         computTotalPrice();
     }
-    public void initDatas(){
-        if (this.items!=null)
+
+    public void initDatas() {
+        if (this.items != null)
             this.items.clear();
     }
+
     public void addItemNum(CarItem item) {
         if (items.contains(item)) {
             item.setItemNum(item.getItemNum() + 1);
             computTotalPrice();
+            return;
         }
     }
 
@@ -65,7 +78,7 @@ public class Car {
                 BigDecimal bdItemPrice = new BigDecimal(item.getProductPrice());
                 BigDecimal bdItemNum = new BigDecimal(item.getItemNum());
                 BigDecimal bdItemTotal = bdItemPrice.multiply(bdItemNum);
-                bd.add(bdItemTotal);
+                bd=bd.add(bdItemTotal);
             }
         } else {
             totalPrice = "0";
@@ -73,7 +86,8 @@ public class Car {
         }
         totalPrice = bd.toString();
     }
-    public int getItemsSize(){
+
+    public int getItemsSize() {
         return items.size();
     }
 

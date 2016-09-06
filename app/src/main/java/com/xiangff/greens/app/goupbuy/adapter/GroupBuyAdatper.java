@@ -81,7 +81,7 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         if (viewHolder instanceof GroupBuyViewHolder){
-            GroupBuyViewHolder holder= (GroupBuyViewHolder) viewHolder;
+            final GroupBuyViewHolder holder= (GroupBuyViewHolder) viewHolder;
             GBModel gbModel = this.gbModels.get(position);
             if (!TextUtils.isEmpty(gbModel.getImgUrl()))
                 ImageLoader.getInstance().displayImage(gbModel.getImgUrl(), holder.ivProduct, options);
@@ -127,6 +127,20 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (TextUtils.isEmpty(gbModel.getGbPrice())) gbModel.setGbPrice("");
             holder.tvPrice.setText(gbModel.getGbPrice());
             holder.tvPriceUnit.setText(gbModel.getGbUnit());
+
+            //绑定itemView的单击事件
+            // 如果设置了回调，则设置点击事件
+            if (mOnItemClickLitener != null)
+            {
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int pos = holder.getLayoutPosition();
+                        mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                    }
+                });
+            }
+
         }else if(viewHolder instanceof  GroupBuyFooterViewHolder){
             GroupBuyFooterViewHolder footer = (GroupBuyFooterViewHolder) viewHolder;
             switch(load_more_status){
@@ -145,6 +159,9 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemCount() {
         return this.gbModels.size() + 1;
     }
+    public List<GBModel> getDatas(){
+        return this.gbModels;
+    }
 
     // 使用DisplayImageOptions.Builder()创建DisplayImageOptions
     DisplayImageOptions options = new DisplayImageOptions.Builder()
@@ -155,4 +172,19 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             .cacheOnDisk(true) // 设置下载的图片是否缓存在SD卡中
 //    .displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片
             .build(); // 构建完成
+
+    /*
+     * ==========点击事件=========
+     */
+    public interface OnItemClickLitener
+    {
+        void onItemClick(View view, int position);
+    }
+
+    private OnItemClickLitener mOnItemClickLitener;
+
+    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener)
+    {
+        this.mOnItemClickLitener = mOnItemClickLitener;
+    }
 }

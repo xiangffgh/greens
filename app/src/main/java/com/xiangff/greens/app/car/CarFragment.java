@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
 import com.xiangff.greens.app.MainActivity;
@@ -20,6 +21,9 @@ import com.xiangff.greens.app.data.car.Car;
 import com.xiangff.greens.app.goupbuy.adapter.GroupBuyAdatper;
 
 import java.util.ArrayList;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,10 +41,16 @@ public class CarFragment extends Fragment implements CarContract.View{
     private OnFragmentInteractionListener mListener;
 
     /*=======视图组件=======*/
-    private AVLoadingIndicatorView avi;
-    private SwipeRefreshLayout srl;
+
+    @BindView(R.id.tv_car_bottom_total_price)
+    TextView tvTotalPrice;
+    @BindView(R.id.avi_car)
+     AVLoadingIndicatorView avi;
+    @BindView(R.id.srl_car)
+     SwipeRefreshLayout srl;
     private LinearLayoutManager linearLayoutManager;
-    private RecyclerView recyclerView;
+    @BindView(R.id.rv_car)
+     RecyclerView recyclerView;
     private CarAdatper carAdatper;
 
     private CarContract.Presenter presenter;
@@ -73,9 +83,7 @@ public class CarFragment extends Fragment implements CarContract.View{
             Log.i(TAG, "onCreateView");
             // Inflate the layout for this fragment
             rootView=inflater.inflate(R.layout.fragment_car, container, false);
-            avi= (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_car);
-            srl= (SwipeRefreshLayout) rootView.findViewById(R.id.srl_car);
-            recyclerView= (RecyclerView) rootView.findViewById(R.id.rv_car);
+            ButterKnife.bind(this,rootView);
             linearLayoutManager=new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(linearLayoutManager);
             this.carAdatper=new CarAdatper(getActivity());
@@ -146,12 +154,12 @@ public class CarFragment extends Fragment implements CarContract.View{
 
     @Override
     public void showLoadingIndicator() {
-
+        avi.show();
     }
 
     @Override
     public void hideLoadingIndicator() {
-
+        avi.hide();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.xiangff.greens.app.home.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -26,5 +27,6 @@ public class HomeBargainPriceViewHolder extends RecyclerView.ViewHolder {
         tvPrice= (TextView) itemView.findViewById(R.id.tv_item_home_bargain_price);
         tvWeigth= (TextView) itemView.findViewById(R.id.tv_item_home_bargain_price_weigth);
         btnAdd= (ImageButton) itemView.findViewById(R.id.btn_item_home_bargain_buy);
+
     }
 }

@@ -43,4 +43,10 @@
 
     <color name="my_divider">#EBEBEC</color>
     <color name="my_fore">#515151</color>
+
+    <color name="green_detail_price">#FF6665</color>
+    <color name="comment_item_sub">#B7B7B7</color>
+    <!-- 秒购详情页-->
+    <color name="groupbuy_detail_price">#FF6665</color>
+
 </resources>

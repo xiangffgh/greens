@@ -1,6 +1,7 @@
 package com.xiangff.greens.app.goupbuy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,9 @@ import com.xiangff.greens.app.MainActivity;
 import com.xiangff.greens.app.R;
 import com.xiangff.greens.app.data.groupbuy.GBModel;
 import com.xiangff.greens.app.goupbuy.adapter.GroupBuyAdatper;
+import com.xiangff.greens.app.goupbuy.groupbuydetail.GroupbuyDetailActivity;
+import com.xiangff.greens.app.home.adapter.HomeBargainPriceAdapter;
+import com.xiangff.greens.app.home.greens.greendetail.GreenDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,6 +124,16 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
                 }
             }
         });
+        gbAdatper.setOnItemClickLitener(new GroupBuyAdatper.OnItemClickLitener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), GroupbuyDetailActivity.class);
+                if (position < gbAdatper.getDatas().size()) {
+                    intent.putExtra("gb", gbAdatper.getDatas().get(position));
+                    startActivity(intent);
+                }
+            }
+        });
     }
 
     private boolean hasLoaded = false;
@@ -193,7 +207,9 @@ public class GroupBuyFragment extends Fragment implements GroupBuyContract.View 
             this.gbAdatper.notifyDataSetChanged();
         }
     }
-
+    public List<GBModel> getDatas(){
+        return this.gbModels;
+    }
     @Override
     public void loadMoreFinished() {
         //当加载完数据后，再恢复加载脚View的显示状态为：上拉加载更多

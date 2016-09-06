@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.xiangff.greens.app.base.App;
 import com.xiangff.greens.app.base.BaseActivity;
 import com.xiangff.greens.app.base.BasePresenter;
 import com.xiangff.greens.app.car.CarFragment;
@@ -30,8 +27,6 @@ import com.xiangff.greens.app.goupbuy.GroupBuyPresenter;
 import com.xiangff.greens.app.home.HomeFragment;
 import com.xiangff.greens.app.home.HomePresenter;
 import com.xiangff.greens.app.my.MyFragment;
-
-import java.util.List;
 
 /**
  * 主窗口
@@ -148,5 +143,25 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
     protected void onDestroy() {
         super.onDestroy();
         this.unregisterReceiver(appExitRecevier);
+    }
+
+    /**
+     * 内存过低时及时处理动画产生的未处理冗余tg
+     */
+//    @Override
+//    public void onLowMemory() {
+//        // TODO Auto-generated method stub
+//        if (cartAnimation != null) {
+//            try {
+//                cartAnimation.root.removeAllViews();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            super.onLowMemory();
+//        }
+//    }
+
+    public FragmentTabHost getTabHost() {
+        return tabHost;
     }
 }

@@ -1,12 +1,12 @@
 package com.xiangff.greens.app.data.groupbuy;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
- *
  * Created by xiangff on 2016/8/29.
  */
-public class GBModel {
+public class GBModel implements Serializable {
     private int id;
     private String gbId;
     /**
@@ -71,7 +71,7 @@ public class GBModel {
      */
     private int status;
 
-    public  enum GBStatus {
+    public enum GBStatus {
 
         NO_HARVEST {
             public String getName() {
@@ -93,6 +93,7 @@ public class GBModel {
                 return "已结束";
             }
         };
+
         public abstract String getName();
     }
 
@@ -262,5 +263,30 @@ public class GBModel {
 
     public void setCarGoInPrictrues(List<String> carGoInPrictrues) {
         this.carGoInPrictrues = carGoInPrictrues;
+    }
+
+    @Override
+    public String toString() {
+        return "GBModel{" +
+                "id=" + id +
+                ", gbId='" + gbId + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
+                ", address='" + address + '\'' +
+                ", marketPrice='" + marketPrice + '\'' +
+                ", gbPrice='" + gbPrice + '\'' +
+                ", gbUnit='" + gbUnit + '\'' +
+                ", harvestTime='" + harvestTime + '\'' +
+                ", remainingTime='" + remainingTime + '\'' +
+                ", currentGroupPerson=" + currentGroupPerson +
+                ", currentOrders='" + currentOrders + '\'' +
+                ", totalOrders='" + totalOrders + '\'' +
+                ", differentialPricing='" + differentialPricing + '\'' +
+                ", status=" + status +
+                ", noHarvestPictrues=" + noHarvestPictrues +
+                ", harvestingPictrues=" + harvestingPictrues +
+                ", carGoInPrictrues=" + carGoInPrictrues +
+                '}';
     }
 }

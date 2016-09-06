@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    >
+
+    <TextView
+        android:id="@+id/tv_item_comment_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="不错"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="30dp"
+        />
+    <TextView
+        android:id="@+id/tv_item_comment_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_item_comment_content"
+        android:layout_alignLeft="@+id/tv_item_comment_content"
+        android:layout_marginBottom="10dp"
+        android:text="139***"
+        android:textColor="@color/comment_item_sub"
+        android:textSize="16sp"
+        />
+    <TextView
+        android:id="@+id/tv_item_comment_sub_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_item_comment_author"
+        android:layout_toRightOf="@+id/tv_item_comment_author"
+        android:text=" | "
+        android:textColor="@color/comment_item_sub"
+        android:textSize="16sp"
+        />
+    <TextView
+        android:id="@+id/tv_item_comment_create_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/tv_item_comment_sub_center"
+        android:layout_toRightOf="@+id/tv_item_comment_sub_center"
+        android:text="2016-04-06"
+        android:textColor="@color/comment_item_sub"
+        android:textSize="16sp"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/divider"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
+</RelativeLayout>
