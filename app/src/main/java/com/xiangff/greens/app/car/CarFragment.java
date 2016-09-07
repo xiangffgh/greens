@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.wang.avi.AVLoadingIndicatorView;
@@ -44,6 +47,11 @@ public class CarFragment extends Fragment implements CarContract.View{
 
     @BindView(R.id.tv_car_bottom_total_price)
     TextView tvTotalPrice;
+    @BindView(R.id.btn_car_delete)
+    ImageButton btnDelete;
+    @BindView(R.id.btn_car_order)
+    Button btnOrder;
+
     @BindView(R.id.avi_car)
      AVLoadingIndicatorView avi;
     @BindView(R.id.srl_car)
@@ -162,10 +170,21 @@ public class CarFragment extends Fragment implements CarContract.View{
         avi.hide();
     }
 
+    /**
+     * 显示购物车数据
+     * @param car
+     */
     @Override
     public void showCarDatas(Car car) {
         this.carAdatper.notifyDataSetChanged();
         this.srl.setRefreshing(false);
+        tvTotalPrice.setText(Car.getInstance().getTotalPrice());
+        if (!TextUtils.isEmpty(Car.getInstance().getTotalPrice())){
+            if(Double.parseDouble(Car.getInstance().getTotalPrice())>0){
+                btnOrder.setBackgroundResource(R.color.car_bottom_have);
+            }else btnOrder.setBackgroundResource(R.color.car_bottom_none);
+        }
+
     }
 
 
