@@ -36,4 +36,12 @@
     <dimen name="my_top_address">10sp</dimen>
     <dimen name="my_top_set">14sp</dimen>
     <dimen name="my_operator_text">14sp</dimen>
+
+
+    <!-- 下拉刷新组件 -->
+    <dimen name="indicator_right_padding">10dp</dimen>
+    <dimen name="indicator_corner_radius">12dp</dimen>
+    <dimen name="indicator_internal_padding">4dp</dimen>
+    <dimen name="header_footer_left_right_padding">24dp</dimen>
+    <dimen name="header_footer_top_bottom_padding">12dp</dimen>
 </resources>

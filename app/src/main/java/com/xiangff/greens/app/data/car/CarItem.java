@@ -73,6 +73,18 @@ public class CarItem {
         return itemNum;
     }
 
+    @Override
+    public String toString() {
+        return "CarItem{" +
+                "itemId=" + itemId +
+                ", productId=" + productId +
+                ", productTitle='" + productTitle + '\'' +
+                ", productUrl='" + productUrl + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", itemNum=" + itemNum +
+                '}';
+    }
+
     public void setItemNum(int itemNum) {
         this.itemNum = itemNum;
     }

@@ -83,7 +83,8 @@
 
     </RelativeLayout>
 
-    <ScrollView
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/ptrsv_home"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_home_title">
@@ -299,7 +300,7 @@
                 />
         </LinearLayout>
 
-    </ScrollView>
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
 
 
     <com.wang.avi.AVLoadingIndicatorView

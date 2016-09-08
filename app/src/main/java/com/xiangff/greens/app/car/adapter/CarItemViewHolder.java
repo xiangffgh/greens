@@ -7,8 +7,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiangff.greens.app.R;
+import com.xiangff.greens.app.view.NumberButton;
 
-import ren.qinc.numberbutton.NumberButton;
 
 /**
  *

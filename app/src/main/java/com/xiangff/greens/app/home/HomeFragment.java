@@ -19,7 +19,10 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.wang.avi.AVLoadingIndicatorView;
 import com.xiangff.greens.app.MainActivity;
@@ -48,6 +51,10 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     private HomeContract.Presenter presenter;
 
     private OnFragmentInteractionListener mListener;
+
+    @BindView(R.id.ptrsv_home)
+    PullToRefreshScrollView mPullRefreshScrollView;
+    ScrollView mScrollView;
 
     @BindView(R.id.avi_home)
     AVLoadingIndicatorView avi;
@@ -101,6 +108,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             // Inflate the layout for this fragment
             rootView = inflater.inflate(R.layout.fragment_home, container, false);
             ButterKnife.bind(this, rootView);
+            mScrollView = mPullRefreshScrollView.getRefreshableView();
 //            avi = (AVLoadingIndicatorView) rootView.findViewById(R.id.avi_home);
 //            bannerLayout= (BannerLayout) rootView.findViewById(R.id.banner_home);
             //添加监听事件
@@ -154,6 +162,13 @@ public class HomeFragment extends Fragment implements HomeContract.View {
             public void showShopingCar(ImageView shopView) {
 
                 addCart(shopView);
+            }
+        });
+        mPullRefreshScrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ScrollView>() {
+
+            @Override
+            public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
+                presenter.start();
             }
         });
     }
@@ -230,6 +245,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
     public void hideLoadingIndicator() {
         avi.hide();
         hasLoaded = true;
+        mPullRefreshScrollView.onRefreshComplete();
     }
 
     /**

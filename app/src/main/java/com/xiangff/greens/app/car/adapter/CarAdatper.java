@@ -2,19 +2,26 @@ package com.xiangff.greens.app.car.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiangff.greens.app.R;
 import com.xiangff.greens.app.data.car.Car;
 import com.xiangff.greens.app.data.car.CarItem;
+import com.xiangff.greens.app.view.NumberButton;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xiangff on 2016/8/30.
@@ -28,9 +35,11 @@ public class CarAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
      * 底部总信息视图
      */
     private static final int VIEW_TYPE_FOOTER = 2;
+    private static final String TAG = "CarAdapter";
 
     private LayoutInflater inflater;
 
+    private List<CarItem> toBeDeleted = new ArrayList<>();
 
     public CarAdatper(Context context) {
         this.inflater = LayoutInflater.from(context);
@@ -57,17 +66,64 @@ public class CarAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof CarItemViewHolder) {
 
             CarItem carItem = Car.getInstance().getItems().get(position);
-            CarItemViewHolder viewHolder = (CarItemViewHolder) holder;
+            final CarItemViewHolder viewHolder = (CarItemViewHolder) holder;
             if (TextUtils.isEmpty(carItem.getProductTitle())) carItem.setProductTitle("");
             if (TextUtils.isEmpty(carItem.getProductPrice())) carItem.setProductPrice("");
             viewHolder.tvTitle.setText(carItem.getProductTitle());
             viewHolder.tvPrice.setText(carItem.getProductPrice());
             if (!TextUtils.isEmpty(carItem.getProductUrl()))
                 ImageLoader.getInstance().displayImage(carItem.getProductUrl(), viewHolder.ivUrl);
+            viewHolder.nb.setCurrentNumber(carItem.getItemNum());
+            viewHolder.nb.setTag(position);
+            viewHolder.nb.setTextChangeListener(new NumberButton.TextChangeListener() {
+                @Override
+                public void afterTextChanged(int position, int value) {
+                    try {
+                        if (carTotalValueChangeListener != null) {
+                            carTotalValueChangeListener.carTotalValueChanged();
+                        }
+                    } catch (RuntimeException e) {
+                        Log.e(TAG, e.getMessage(), e);
+                    }
+                }
+            });
+            viewHolder.cb.setTag(position);
+            CarItem item = Car.getInstance().getItems().get(position);
+            if (toBeDeleted.contains(item)) {
+                viewHolder.cb.setChecked(true);
+                Log.i(TAG, "toBeDeleted.contains(item)-viewHolder.cb.setChecked(true)+tag:" + viewHolder.cb.getTag() + "-position:" + position);
+            } else {
+                viewHolder.cb.setChecked(false);
+                Log.i(TAG, "toBeDeleted.contains(item)-viewHolder.cb.setChecked(false)+tag:" + viewHolder.cb.getTag() + "-position:" + position);
+            }
+
+            Log.i(TAG, "toBeDelete:" + toBeDeleted.size());
+
+            viewHolder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    int tag = (int) buttonView.getTag();
+                    Log.i(TAG, "tag:" + tag + "-postion:" + position);
+                    Log.i(TAG, "onChecked-tag:" + tag + "-checked:" + isChecked);
+                    CarItem carItem = Car.getInstance().getItems().get(tag);
+                    if (isChecked) {
+                        if (!toBeDeleted.contains(carItem)) {
+                            toBeDeleted.add(carItem);
+                            Log.i(TAG, "toBeDelete.add(carItem)-tag:" + tag);
+                        }
+                    } else {
+                        if (toBeDeleted.contains(carItem)) {
+                            toBeDeleted.remove(carItem);
+                            Log.i(TAG, "toBeDelete.remove(carItem)-tag:" + tag);
+                        }
+                    }
+                }
+            });
+
         } else if (holder instanceof FooterViewHolder) {
             FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
             if (!TextUtils.isEmpty(Car.getInstance().getTotalPrice()))
@@ -80,6 +136,20 @@ public class CarAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     @Override
     public int getItemCount() {
         return Car.getInstance().getItemsSize() + 1;
+    }
+
+    public List<CarItem> getToBeDeleted() {
+        return toBeDeleted;
+    }
+
+    private CarTotalValueChangeListener carTotalValueChangeListener;
+
+    public void setCarTotalValueChangeListener(CarTotalValueChangeListener carTotalValueChangeListener) {
+        this.carTotalValueChangeListener = carTotalValueChangeListener;
+    }
+
+    public interface CarTotalValueChangeListener {
+        public void carTotalValueChanged();
     }
 
     // 使用DisplayImageOptions.Builder()创建DisplayImageOptions

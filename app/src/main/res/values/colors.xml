@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+
     <color name="main_theme">#40D8B0</color>
     <color name="backgroud">#F2F2F3</color>
     <color name="title">#41D9B1</color>
@@ -49,4 +50,6 @@
     <!-- 秒购详情页-->
     <color name="groupbuy_detail_price">#FF6665</color>
 
+
+    <color name="numberbutton_divider">#999</color>
 </resources>

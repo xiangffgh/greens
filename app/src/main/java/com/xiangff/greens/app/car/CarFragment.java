@@ -3,6 +3,7 @@ package com.xiangff.greens.app.car;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,12 +22,13 @@ import com.xiangff.greens.app.MainActivity;
 import com.xiangff.greens.app.R;
 import com.xiangff.greens.app.car.adapter.CarAdatper;
 import com.xiangff.greens.app.data.car.Car;
-import com.xiangff.greens.app.goupbuy.adapter.GroupBuyAdatper;
+import com.xiangff.greens.app.data.car.CarItem;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,9 +38,9 @@ import butterknife.ButterKnife;
  * Use the {@link CarFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarFragment extends Fragment implements CarContract.View{
+public class CarFragment extends Fragment implements CarContract.View {
 
-    private static final String TAG="CarFragment";
+    private static final String TAG = "CarFragment";
     private View rootView;//缓存 Fragment view
 
     private OnFragmentInteractionListener mListener;
@@ -53,21 +55,22 @@ public class CarFragment extends Fragment implements CarContract.View{
     Button btnOrder;
 
     @BindView(R.id.avi_car)
-     AVLoadingIndicatorView avi;
+    AVLoadingIndicatorView avi;
     @BindView(R.id.srl_car)
-     SwipeRefreshLayout srl;
+    SwipeRefreshLayout srl;
     private LinearLayoutManager linearLayoutManager;
     @BindView(R.id.rv_car)
-     RecyclerView recyclerView;
+    RecyclerView recyclerView;
     private CarAdatper carAdatper;
 
     private CarContract.Presenter presenter;
 
+    Handler handler = new Handler();
+
     @Override
     public void setPresenter(CarContract.Presenter presenter) {
-        this.presenter=presenter;
+        this.presenter = presenter;
     }
-
 
 
     public CarFragment() {
@@ -90,18 +93,17 @@ public class CarFragment extends Fragment implements CarContract.View{
         if (rootView == null) {
             Log.i(TAG, "onCreateView");
             // Inflate the layout for this fragment
-            rootView=inflater.inflate(R.layout.fragment_car, container, false);
-            ButterKnife.bind(this,rootView);
-            linearLayoutManager=new LinearLayoutManager(getActivity());
+            rootView = inflater.inflate(R.layout.fragment_car, container, false);
+            ButterKnife.bind(this, rootView);
+            linearLayoutManager = new LinearLayoutManager(getActivity());
             recyclerView.setLayoutManager(linearLayoutManager);
-            this.carAdatper=new CarAdatper(getActivity());
+            this.carAdatper = new CarAdatper(getActivity());
             recyclerView.setAdapter(this.carAdatper);
             initListener();
 
         }
         ViewGroup parent = (ViewGroup) rootView.getParent();
-        if (parent != null)
-        {
+        if (parent != null) {
             parent.removeView(rootView);
         }
         return rootView;
@@ -118,6 +120,37 @@ public class CarFragment extends Fragment implements CarContract.View{
                 presenter.loadCarDatas();
             }
         });
+
+        carAdatper.setCarTotalValueChangeListener(new CarAdatper.CarTotalValueChangeListener() {
+            @Override
+            public void carTotalValueChanged() {
+                tvTotalPrice.setText(Car.getInstance().getTotalPrice());
+                carAdatper.notifyDataSetChanged();
+                //recyclerview is computing or layout catn`t to call method notifyDatesetChanged
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        carAdatper.notifyDataSetChanged();
+//                    }
+//                },0);
+            }
+        });
+    }
+    @OnClick({R.id.btn_car_delete,R.id.btn_car_order})
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.btn_car_delete:
+                List<CarItem> toBeDelete=carAdatper.getToBeDeleted();
+                for (CarItem item :
+                        toBeDelete) {
+                    Car.getInstance().removeItem(item);
+                }
+                carAdatper.notifyDataSetChanged();
+                break;
+            case R.id.btn_car_order:
+                //跳转支付
+                break;
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -137,20 +170,20 @@ public class CarFragment extends Fragment implements CarContract.View{
                     + " must implement OnFragmentInteractionListener");
         }
         Log.i(TAG, "CarFragment-onAttach");
-        if (context instanceof MainActivity){
-            ((MainActivity)context).setCarView(this);
+        if (context instanceof MainActivity) {
+            ((MainActivity) context).setCarView(this);
         }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.i(TAG,"onResume");
-        if (this.presenter!=null){
+        Log.i(TAG, "onResume");
+        if (this.presenter != null) {
             //加载购物车数据
             this.presenter.start();
-        }else{
-            Log.e(TAG,"carView对应的presenter不能为空 !");
+        } else {
+            Log.e(TAG, "carView对应的presenter不能为空 !");
         }
     }
 
@@ -172,6 +205,7 @@ public class CarFragment extends Fragment implements CarContract.View{
 
     /**
      * 显示购物车数据
+     *
      * @param car
      */
     @Override
@@ -179,14 +213,13 @@ public class CarFragment extends Fragment implements CarContract.View{
         this.carAdatper.notifyDataSetChanged();
         this.srl.setRefreshing(false);
         tvTotalPrice.setText(Car.getInstance().getTotalPrice());
-        if (!TextUtils.isEmpty(Car.getInstance().getTotalPrice())){
-            if(Double.parseDouble(Car.getInstance().getTotalPrice())>0){
+        if (!TextUtils.isEmpty(Car.getInstance().getTotalPrice())) {
+            if (Double.parseDouble(Car.getInstance().getTotalPrice()) > 0) {
                 btnOrder.setBackgroundResource(R.color.car_bottom_have);
-            }else btnOrder.setBackgroundResource(R.color.car_bottom_none);
+            } else btnOrder.setBackgroundResource(R.color.car_bottom_none);
         }
 
     }
-
 
 
     /**

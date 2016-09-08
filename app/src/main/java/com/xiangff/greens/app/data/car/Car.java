@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class Car {
 
+    private static final String TAG = "Car";
+
     private static class CarHolder {
         public static final Car car = new Car();
     }
@@ -27,14 +29,21 @@ public class Car {
     public static Car getInstance() {
         return CarHolder.car;
     }
-    public List<CarItem> getItems(){
+
+    public List<CarItem> getItems() {
         return items;
     }
+
     public void addItem(CarItem item) {
         if (items.contains(item)) {
-            item.setItemNum(item.getItemNum() + 1);
-            computTotalPrice();
-            return;
+            for (CarItem carItem :
+                    items) {
+                if (carItem.equals(item)) {
+                    carItem.setItemNum(carItem.getItemNum() + 1);
+                    computTotalPrice();
+                    return;
+                }
+            }
         }
         item.setItemNum(1);
         this.items.add(item);
@@ -48,17 +57,42 @@ public class Car {
 
     public void addItemNum(CarItem item) {
         if (items.contains(item)) {
-            item.setItemNum(item.getItemNum() + 1);
-            computTotalPrice();
-            return;
+            for (CarItem carItem :
+                    items) {
+                if (carItem.equals(item)) {
+                    carItem.setItemNum(item.getItemNum() + 1);
+                    computTotalPrice();
+                    return;
+                }
+            }
         }
     }
 
     public void subtractItemNum(CarItem item) {
         if (items.contains(item)) {
             if (item.getItemNum() > 0) {
-                item.setItemNum(item.getItemNum() - 1);
-                computTotalPrice();
+                for (CarItem carItem :
+                        items) {
+                    if (carItem.equals(item)) {
+                        carItem.setItemNum(item.getItemNum() - 1);
+                        computTotalPrice();
+                    }
+                }
+            }
+        }
+    }
+
+    public void setItemNum(CarItem item, int num) {
+        if (items.contains(item)) {
+            if (item.getItemNum() > 0) {
+                for (CarItem carItem :
+                        items) {
+                    if (carItem.equals(item)) {
+                        Log.i(TAG,"Car - setItemNum:"+num);
+                        carItem.setItemNum(num);
+                        computTotalPrice();
+                    }
+                }
             }
         }
     }
@@ -78,7 +112,7 @@ public class Car {
                 BigDecimal bdItemPrice = new BigDecimal(item.getProductPrice());
                 BigDecimal bdItemNum = new BigDecimal(item.getItemNum());
                 BigDecimal bdItemTotal = bdItemPrice.multiply(bdItemNum);
-                bd=bd.add(bdItemTotal);
+                bd = bd.add(bdItemTotal);
             }
         } else {
             totalPrice = "0";
