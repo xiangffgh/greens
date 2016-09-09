@@ -11,6 +11,13 @@ public class CarItem {
     private String productUrl;
     private String productPrice;
 
+    private int itemType;
+
+    public interface ItemType{
+        int normalProduct=0;
+        int groupbuy=2;
+    }
+
     private int itemNum;
 
     public CarItem() {
@@ -22,7 +29,7 @@ public class CarItem {
         if (o==this) return true;
         if (o instanceof CarItem){
             CarItem item= (CarItem) o;
-            if (item.getProductId()==this.getProductId()){
+            if (item.getItemType()==this.getItemType()&&item.getProductId()==this.getProductId()){
                 return true;
             }
         }
@@ -73,6 +80,14 @@ public class CarItem {
         return itemNum;
     }
 
+    public int getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(int itemType) {
+        this.itemType = itemType;
+    }
+
     @Override
     public String toString() {
         return "CarItem{" +
@@ -81,6 +96,7 @@ public class CarItem {
                 ", productTitle='" + productTitle + '\'' +
                 ", productUrl='" + productUrl + '\'' +
                 ", productPrice='" + productPrice + '\'' +
+                ", itemType=" + itemType +
                 ", itemNum=" + itemNum +
                 '}';
     }

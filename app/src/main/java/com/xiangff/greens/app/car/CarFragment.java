@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -51,6 +53,10 @@ public class CarFragment extends Fragment implements CarContract.View {
     TextView tvTotalPrice;
     @BindView(R.id.btn_car_delete)
     ImageButton btnDelete;
+
+    @BindView(R.id.cb_car_check)
+    CheckBox cbAllCheck;
+
     @BindView(R.id.btn_car_order)
     Button btnOrder;
 
@@ -135,16 +141,33 @@ public class CarFragment extends Fragment implements CarContract.View {
 //                },0);
             }
         });
+        cbAllCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    List<CarItem> toBeDelete=carAdatper.getToBeDeleted();
+                    toBeDelete.clear();
+                    toBeDelete.addAll(carAdatper.getDatas());
+                    carAdatper.notifyDataSetChanged();
+                }else {
+                    cbAllCheck.setChecked(false);
+                    carAdatper.getToBeDeleted().clear();
+                    carAdatper.notifyDataSetChanged();
+                }
+            }
+        });
     }
-    @OnClick({R.id.btn_car_delete,R.id.btn_car_order})
-    public void onClick(View view){
-        switch (view.getId()){
+
+    @OnClick({R.id.btn_car_delete, R.id.btn_car_order})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_car_delete:
-                List<CarItem> toBeDelete=carAdatper.getToBeDeleted();
+                List<CarItem> toBeDelete = carAdatper.getToBeDeleted();
                 for (CarItem item :
                         toBeDelete) {
                     Car.getInstance().removeItem(item);
                 }
+                tvTotalPrice.setText(Car.getInstance().getTotalPrice());
                 carAdatper.notifyDataSetChanged();
                 break;
             case R.id.btn_car_order:

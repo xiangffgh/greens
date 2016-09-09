@@ -6,10 +6,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiangff.greens.app.R;
+import com.xiangff.greens.app.data.car.Car;
+import com.xiangff.greens.app.data.car.CarItem;
 import com.xiangff.greens.app.data.groupbuy.GBModel;
 
 import org.w3c.dom.Text;
@@ -79,10 +82,10 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int position) {
         if (viewHolder instanceof GroupBuyViewHolder){
             final GroupBuyViewHolder holder= (GroupBuyViewHolder) viewHolder;
-            GBModel gbModel = this.gbModels.get(position);
+            final GBModel gbModel = this.gbModels.get(position);
             if (!TextUtils.isEmpty(gbModel.getImgUrl()))
                 ImageLoader.getInstance().displayImage(gbModel.getImgUrl(), holder.ivProduct, options);
             if (TextUtils.isEmpty(gbModel.getTitle())) gbModel.setTitle("");
@@ -127,7 +130,22 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
             if (TextUtils.isEmpty(gbModel.getGbPrice())) gbModel.setGbPrice("");
             holder.tvPrice.setText(gbModel.getGbPrice());
             holder.tvPriceUnit.setText(gbModel.getGbUnit());
-
+            holder.btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GBModel gbModel=gbModels.get(position);
+                    CarItem carItem=new CarItem();
+                    carItem.setProductId(gbModel.getId());
+                    carItem.setProductTitle(gbModel.getTitle());
+                    carItem.setProductPrice(gbModel.getGbPrice());
+                    carItem.setProductUrl(gbModel.getImgUrl());
+                    carItem.setItemType(CarItem.ItemType.groupbuy);
+                    Car.getInstance().addItem(carItem);
+                    if (shopingCarAnimListener!=null){
+                        shopingCarAnimListener.showShopingCar(holder.ivProduct);
+                    }
+                }
+            });
             //绑定itemView的单击事件
             // 如果设置了回调，则设置点击事件
             if (mOnItemClickLitener != null)
@@ -186,5 +204,15 @@ public class GroupBuyAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener)
     {
         this.mOnItemClickLitener = mOnItemClickLitener;
+    }
+    /**
+     * ======点击购物车动画=======
+     */
+    public interface  ShopingCarAnimListener{
+        void showShopingCar(ImageView shopView);
+    }
+    private ShopingCarAnimListener shopingCarAnimListener;
+    public void setShopingCarListenerAnim(ShopingCarAnimListener shopingCarAnimListener){
+        this.shopingCarAnimListener=shopingCarAnimListener;
     }
 }

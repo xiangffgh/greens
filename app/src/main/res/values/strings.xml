@@ -32,4 +32,7 @@
 
     <!-- 秒购详情 -->
     <string name="groupbuy_detail_title">详情</string>
+
+    <!-- 健康咨询 -->
+    <string name="healthies_title">健康资讯</string>
 </resources>

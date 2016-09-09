@@ -30,7 +30,7 @@
     <dimen name="group_buy_item_title">18sp</dimen>
     <dimen name="group_buy_item_sub">16sp</dimen>
     <dimen name="group_buy_item_sub_little">14sp</dimen>
-    <dimen name="group_buy_item_sub_little_lettle">14sp</dimen>
+    <dimen name="group_buy_item_sub_little_lettle">10sp</dimen>
     <dimen name="group_buy_item_price">16sp</dimen>
     <dimen name="car_bottom_total_price">16sp</dimen>
     <dimen name="my_top_address">10sp</dimen>

@@ -95,30 +95,21 @@ public class CarAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             CarItem item = Car.getInstance().getItems().get(position);
             if (toBeDeleted.contains(item)) {
                 viewHolder.cb.setChecked(true);
-                Log.i(TAG, "toBeDeleted.contains(item)-viewHolder.cb.setChecked(true)+tag:" + viewHolder.cb.getTag() + "-position:" + position);
             } else {
                 viewHolder.cb.setChecked(false);
-                Log.i(TAG, "toBeDeleted.contains(item)-viewHolder.cb.setChecked(false)+tag:" + viewHolder.cb.getTag() + "-position:" + position);
             }
-
-            Log.i(TAG, "toBeDelete:" + toBeDeleted.size());
-
             viewHolder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     int tag = (int) buttonView.getTag();
-                    Log.i(TAG, "tag:" + tag + "-postion:" + position);
-                    Log.i(TAG, "onChecked-tag:" + tag + "-checked:" + isChecked);
                     CarItem carItem = Car.getInstance().getItems().get(tag);
                     if (isChecked) {
                         if (!toBeDeleted.contains(carItem)) {
                             toBeDeleted.add(carItem);
-                            Log.i(TAG, "toBeDelete.add(carItem)-tag:" + tag);
                         }
                     } else {
                         if (toBeDeleted.contains(carItem)) {
                             toBeDeleted.remove(carItem);
-                            Log.i(TAG, "toBeDelete.remove(carItem)-tag:" + tag);
                         }
                     }
                 }
@@ -140,6 +131,10 @@ public class CarAdatper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public List<CarItem> getToBeDeleted() {
         return toBeDeleted;
+    }
+
+    public List<CarItem> getDatas() {
+        return Car.getInstance().getItems();
     }
 
     private CarTotalValueChangeListener carTotalValueChangeListener;

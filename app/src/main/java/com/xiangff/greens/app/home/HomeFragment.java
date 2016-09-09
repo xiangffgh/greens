@@ -32,6 +32,7 @@ import com.xiangff.greens.app.data.adv.Adv;
 import com.xiangff.greens.app.home.adapter.HomeBargainPriceAdapter;
 import com.xiangff.greens.app.home.greens.GreensActivity;
 import com.xiangff.greens.app.home.greens.greendetail.GreenDetailActivity;
+import com.xiangff.greens.app.home.healthy.HealthiesActivity;
 import com.yyydjk.library.BannerLayout;
 
 import java.util.ArrayList;
@@ -188,6 +189,8 @@ public class HomeFragment extends Fragment implements HomeContract.View {
                 break;
             case R.id.rl_home_tools_health:
                 Log.i(TAG, "toHealth");
+                intent=new Intent(getActivity(), HealthiesActivity.class);
+                startActivity(intent);
                 break;
             case R.id.rl_home_tools_cookbook:
                 Log.i(TAG, "toCookBook");
@@ -321,7 +324,7 @@ public class HomeFragment extends Fragment implements HomeContract.View {
         float startY = startLoc[1] - parentLocation[1] + iv.getHeight() / 2;
 
         //商品掉落后的终点坐标：购物车起始点-父布局起始点+购物车图片的1/5
-        float toX = endLoc[0] - parentLocation[0] + cart.getWidth() / 5;
+        float toX = endLoc[0] - parentLocation[0];
         float toY = endLoc[1] - parentLocation[1];
 
 //        四、计算中间动画的插值坐标（贝塞尔曲线）（其实就是用贝塞尔曲线来完成起终点的过程）

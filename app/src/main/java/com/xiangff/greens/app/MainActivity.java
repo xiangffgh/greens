@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,17 +37,46 @@ import com.xiangff.greens.app.my.MyFragment;
  * V1.0
  */
 public class MainActivity extends BaseActivity implements HomeFragment.OnFragmentInteractionListener, GroupBuyFragment.OnFragmentInteractionListener, CarFragment.OnFragmentInteractionListener, FindFragment.OnFragmentInteractionListener, MyFragment.OnFragmentInteractionListener {
-    private static  final String TAG="MainActivity";
+    private static final String TAG = "MainActivity";
     private FragmentTabHost tabHost;
     private LayoutInflater layoutInflater;
     private Class fragmentArray[] = {HomeFragment.class, GroupBuyFragment.class, CarFragment.class, FindFragment.class, MyFragment.class};
-    private String frgmentTags[]={"TAG_HOME","TAG_GROUPBUY","TAG_CAR","TAG_FIND","TAG_MY"};
+    private String frgmentTags[] = {"TAG_HOME", "TAG_GROUPBUY", "TAG_CAR", "TAG_FIND", "TAG_MY"};
     private BasePresenter homePresenter;
     private BasePresenter groupBuyPresenter;
     private BasePresenter carPresenter;
     private int tabImageArray[] = {R.mipmap.home_tab_1_p, R.mipmap.home_tab_2_p, R.mipmap.home_tab_3_p, R.mipmap.home_tab_4_p, R.mipmap.home_tab_5_p};
     private String tabNameArray[] = {"有货", "秒团", "购物车", "发现", "我的"};
 
+    /**
+     * =======应用于从其他界面跳转回主界面的时候切换到那个Tab=======
+     * 例如: Greens界面点击购物车，跳转回首页并显示购物车fragment
+     */
+    public class ToTab {
+        public static final String Intent_Key = "ToTab";
+
+        public class Intent_Value {
+            public static final String HOME = "toHome";
+            public static final String GROUPBUY = "toGroupbuy";
+            public static final String CAR = "toCar";
+            public static final String FIND = "toFind";
+            public static final String MY = "my";
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i(TAG,"onNewIntent");
+        setIntent(intent);
+        String intentValue=intent.getStringExtra(ToTab.Intent_Key);
+        Log.i(TAG,"onNewIntent-intentValue:"+intentValue);
+        if (!TextUtils.isEmpty(intentValue)){
+            if (ToTab.Intent_Value.CAR.equals(intentValue)){
+                tabHost.setCurrentTab(2);
+            }
+        }
+    }
 
     public void setHomeView(HomeFragment homeView) {
 
@@ -54,21 +84,23 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
         /*
          *初始化 MP
          */
-        homePresenter=new HomePresenter(ProductRepository.getInstance(ProductRemoteDataSource.getInstance(), ProductLocalDataSource.getInstance(this)),homeView);
+        homePresenter = new HomePresenter(ProductRepository.getInstance(ProductRemoteDataSource.getInstance(), ProductLocalDataSource.getInstance(this)), homeView);
     }
-    public void setGroupBuyView(GroupBuyFragment groupBuyView){
-        Log.i(TAG,"MainActivity-setGroupBuyView:"+groupBuyView);
+
+    public void setGroupBuyView(GroupBuyFragment groupBuyView) {
+        Log.i(TAG, "MainActivity-setGroupBuyView:" + groupBuyView);
         /**
          * 初始MP
          */
-        groupBuyPresenter=new GroupBuyPresenter(groupBuyView);
+        groupBuyPresenter = new GroupBuyPresenter(groupBuyView);
     }
-    public void setCarView(CarFragment carView){
-        Log.i(TAG,"MainActivity-setCarView:"+carView);
+
+    public void setCarView(CarFragment carView) {
+        Log.i(TAG, "MainActivity-setCarView:" + carView);
         /**
          * 初始MP
          */
-        carPresenter=new CarPresenter(carView);
+        carPresenter = new CarPresenter(carView);
 
     }
 
@@ -88,7 +120,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
         initView();
 
         initRecevier();
-        Log.i(TAG,"onCreateFinished");
+        Log.i(TAG, "onCreateFinished");
     }
 
     @Override
@@ -96,6 +128,7 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
         super.onResume();
         Log.i(TAG, "onResume");
     }
+
     private void initRecevier() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(AppExitRecevier.ACTION_EXIT);
@@ -135,10 +168,12 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
         tv.setText(tabNameArray[i]);
         return view;
     }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -160,7 +195,6 @@ public class MainActivity extends BaseActivity implements HomeFragment.OnFragmen
 //            super.onLowMemory();
 //        }
 //    }
-
     public FragmentTabHost getTabHost() {
         return tabHost;
     }

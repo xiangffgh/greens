@@ -1,81 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rl_greens_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/backgroud"
-    tools:context="com.xiangff.greens.app.home.greens.GreensActivity">
+    android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/rl_greens_title"
+        android:id="@+id/rl_healthies_title"
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_title"
         android:background="@color/title">
+
         <LinearLayout
-            android:id="@+id/ll_greens_back"
+            android:id="@+id/ll_healthies_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:clickable="true"
-            >
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10sp"
                 android:text="@string/top_back"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10sp"
-                android:layout_centerVertical="true"
                 android:textColor="@color/title_fore"
-                android:textSize="@dimen/top_title_fore"
-                />
+                android:textSize="@dimen/top_title_fore" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="返回"
                 android:layout_alignParentLeft="true"
-                android:layout_marginLeft="10sp"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="10sp"
+                android:text="返回"
                 android:textColor="@color/title_fore"
-                android:textSize="@dimen/top_title_back"
-                />
+                android:textSize="@dimen/top_title_back" />
         </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="@string/greens_title"
+            android:text="@string/healthies_title"
             android:textColor="@color/title_fore"
             android:textSize="@dimen/top_title_fore" />
-        <ImageButton
-            android:id="@+id/ib_greens_car"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:background="@null"
-            android:src="@mipmap/trash"
-            />
     </RelativeLayout>
-    <!-- 蔬菜列表 -->
+
+    <!-- 资讯列表 -->
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/srl_greens"
+        android:id="@+id/srl_healthies"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rl_greens_title">
+        android:layout_below="@+id/rl_healthies_title">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_greens"
+            android:id="@+id/rv_healthies"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    <com.wang.avi.AVLoadingIndicatorView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/avi_greens"
+    <com.wang.avi.AVLoadingIndicatorView xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/avi_healthies"
         style="@style/AVLoadingIndicatorView.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -83,5 +71,4 @@
         android:visibility="gone"
         app:indicatorColor="@color/main_theme"
         app:indicatorName="BallPulseIndicator" />
-
 </RelativeLayout>

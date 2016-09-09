@@ -109,6 +109,7 @@ public class HomeBargainPriceAdapter extends RecyclerView.Adapter<HomeBargainPri
         item.setProductTitle(p.getTitle());
         item.setProductPrice(p.getPrice());
         item.setProductUrl(p.getUrl());
+        item.setItemType(CarItem.ItemType.normalProduct);
         Car.getInstance().addItem(item);
     }
 

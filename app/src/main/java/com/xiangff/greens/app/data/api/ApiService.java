@@ -4,6 +4,7 @@ package com.xiangff.greens.app.data.api;
 import com.xiangff.greens.app.data.Product;
 import com.xiangff.greens.app.data.adv.Adv;
 import com.xiangff.greens.app.data.groupbuy.GBModel;
+import com.xiangff.greens.app.data.healthy.HealthyModel;
 
 import java.util.List;
 
@@ -28,4 +29,8 @@ public interface ApiService {
 
     @GET("greens/list.do")
     Observable<List<Product>> getGreens(@Query("currentPage") int currentPage);
+
+    @GET("healthy/list.do")
+    Observable<List<HealthyModel>> getHealthies(@Query("currentPage") int currentPage);
+
 }
